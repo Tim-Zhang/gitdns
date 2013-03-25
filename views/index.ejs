@@ -31,7 +31,7 @@
         <h1><%= brand %></h1>
         <p class="lead">Welcome to <%= brand %></p>
         <p class="login">
-          <a href="" class="btn btn-primary btn-large">Login With DNSPod</a>
+        <a class="btn btn-primary btn-large" href="<%= login_url %>">Login With DNSPod</a>
         </p>
       </div>
    </header>
@@ -39,5 +39,6 @@
    </div>
    <footer class="footer"><%= brand %> &copy; 2013</footer>
 
+  <script type="text/javascript" data-main="/javascript/main" src="/javascript/require.js"></script>
   </body>
 </html>

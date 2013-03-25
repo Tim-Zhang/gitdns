@@ -4,10 +4,12 @@
  */
 
 var express = require('express')
+  , config = require('./config')
   , routes = require('./routes')
   , user = require('./routes/user')
   , http = require('http')
-  , path = require('path');
+  , path = require('path')
+  , oauth = require('./oauth');
 
 var app = express();
 
@@ -29,6 +31,7 @@ app.configure('development', function(){
 });
 
 app.get('/', routes.index);
+app.get('/oauth_callback', oauth.callback);
 app.get('/users', user.list);
 
 http.createServer(app).listen(app.get('port'), function(){
