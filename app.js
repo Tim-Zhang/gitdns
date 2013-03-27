@@ -21,6 +21,8 @@ app.configure(function(){
   app.use(express.logger('dev'));
   app.use(express.bodyParser());
   app.use(express.methodOverride());
+  app.use(express.cookieParser('some secret'));
+  app.use(express.cookieSession());
   app.use(app.router);
   app.use(require('less-middleware')({ src: __dirname + '/public' }));
   app.use(express.static(path.join(__dirname, 'public')));
@@ -31,6 +33,9 @@ app.configure('development', function(){
 });
 
 app.get('/', routes.index);
+app.post('/', function(req, res) {
+  res.end('1'); 
+});
 app.get('/oauth_callback', oauth.callback);
 app.get('/users', user.list);
 
