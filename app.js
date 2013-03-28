@@ -33,8 +33,9 @@ app.configure('development', function(){
 });
 
 app.get('/', routes.index);
-app.post('/', function(req, res) {
-  res.end('1'); 
+app.get('/logout', function(req, res) {
+  req.session.user = null;
+  res.redirect('/');
 });
 app.get('/oauth_callback', oauth.callback);
 app.get('/users', user.list);

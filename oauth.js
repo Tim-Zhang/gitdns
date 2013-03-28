@@ -33,9 +33,11 @@ exports.getUserInfo = function(req, res) {
   request(params, function(error, response, body){
     body = JSON.parse(body);
     if (body && body.info && body.info.user) {
-       req.session.user = body.info.user; 
+       var user = body.info.user;
+       user.name = user.realname || user.nick || user.id;
+       req.session.user = user; 
     }
-    console.log(req.session.user);
+
     res.redirect('/');
   });
 

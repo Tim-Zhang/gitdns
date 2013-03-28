@@ -3,7 +3,6 @@
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/bootstrap/css/bootstrap.css' />
-    <link rel='stylesheet' href='/bootstrap/css/docs.css' />
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
@@ -15,29 +14,79 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="https://zhangzewen.me">About me</a>
+          <a class="brand" href="#">DnsGit</a>
           <div class="nav-collapse collapse">
-            <ul class="nav">
-              <li class="">
-                <a href="/">Home</a>
-              </li>
+            <ul class="nav pull-right">
+              <% if (user) { %>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= user.name %> <b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="/logout">logout</a></li>
+                  </ul>
+                </li>
+              <% } else { %>
+                <li>
+                  <a href="<%= login_url %>">Login With DNSPod</a>
+                </li>
+              <% } %>
             </ul>
-          </div>
+          </div><!--/.nav-collapse -->
         </div>
       </div>
     </div>
-    <header class="jumbotron subhead" id="overview">
-      <div class="container masthead">
-        <h1><%= brand %></h1>
-        <p class="lead">Welcome to <%= brand %></p>
-        <p class="login">
-        <a class="btn btn-primary btn-large" href="<%= login_url %>">Login With DNSPod</a>
-        </p>
-      </div>
-   </header>
    <div class="container">
-   </div>
-   <footer class="footer"><%= brand %> &copy; 2013</footer>
+
+      <!-- Main hero unit for a primary marketing message or call to action -->
+      <div class="hero-unit">
+        <h1><%= brand%></h1>
+        <p class="lead">Welcome to <%= brand %></p>
+        <% if (user) { %>
+          <form class="form-horizontal">
+            <div class="alert alert-info">
+              <strong><span class="badge">1</span></strong> 
+              Set Git repository : 
+              <input class="span6" id="git-rep" type="text">
+              <button class="btn" type="submit">Update</button>
+            </div>
+
+            <div class="alert alert-info">
+              <strong><span class="badge">2</span></strong> 
+              Add Post-Receive Hooks : <strong>http://api.is3w.com/notify/<%= user.id %></strong>
+            </div>
+          </form>
+        <% } else { %>
+          <p class="login">
+             <a class="btn btn-primary btn-large" href="<%= login_url %>">Login With DNSPod</a>
+          </p>
+        <% } %>
+      </div>
+
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="span4">
+          <h2>Managed DNS service</h2>
+          <p>Geographic distributed name servers managed by us. You are pushing your configuration files with git and we are doing the rest.</p>
+          <p><a class="btn" href="#">View details »</a></p>
+        </div>
+        <div class="span4">
+          <h2>Git management</h2>
+          <p>Easy DNS management and deployment with git. To create a new domain, add the configuration file to git repository, to delete a domain, remove file from git repository.</p>
+          <p><a class="btn" href="#">View details »</a></p>
+       </div>
+        <div class="span4">
+          <h2>Version control</h2>
+          <p>Track changes, view history, rollback, continuous backups with git. Safe delegation of DNS administration tasks to users from your organization.</p>
+          <p><a class="btn" href="#">View details »</a></p>
+        </div>
+      </div>
+
+      <hr>
+
+      <footer>
+        <p>© <%= brand %> 2013</p>
+      </footer>
+
+    </div>
 
   <script type="text/javascript" data-main="/javascript/main" src="/javascript/require.js"></script>
   </body>
