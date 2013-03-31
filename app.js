@@ -4,13 +4,15 @@
  */
 
 var express = require('express')
+  , http = require('http')
+  , path = require('path')
   , config = require('./config')
   , routes = require('./routes')
   , user = require('./routes/user')
-  , http = require('http')
-  , path = require('path')
+  , db = require('./db')
   , oauth = require('./oauth');
 
+require('./db');
 var app = express();
 
 app.configure(function(){
@@ -39,6 +41,27 @@ app.get('/logout', function(req, res) {
 });
 app.get('/oauth_callback', oauth.callback);
 app.get('/users', user.list);
+
+app.post('/rep', function(req, res) {
+   var user = {
+     id: req.body.user_id,
+     gitrep: req.body.gitrep
+   };
+   db.saveUser(user, function(err) {
+     if (!err) {
+       res.status(200);
+       res.send({status: 'success'});
+     } else {
+       res.status(500);
+       res.send(err);
+     } 
+   });
+});
+
+app.get('/rep', function(req, res) {
+   //db.saveUser();
+  
+});
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));

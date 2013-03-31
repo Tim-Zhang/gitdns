@@ -41,18 +41,7 @@
         <h1><%= brand%></h1>
         <p class="lead">Welcome to <%= brand %></p>
         <% if (user) { %>
-          <form class="form-horizontal">
-            <div class="alert alert-info">
-              <strong><span class="badge">1</span></strong> 
-              Set Git repository : 
-              <input class="span6" id="git-rep" type="text">
-              <button class="btn" type="submit">Update</button>
-            </div>
-
-            <div class="alert alert-info">
-              <strong><span class="badge">2</span></strong> 
-              Add Post-Receive Hooks : <strong>http://api.dnsgit.com/notify/<%= user.id %></strong>
-            </div>
+          <form class="form-horizontal" id="setup">
           </form>
         <% } else { %>
           <p class="login">
@@ -88,6 +77,40 @@
 
     </div>
 
+  <script type="text/template" id="first-step">
+    <strong><span class="badge">1</span></strong> 
+    <span>Set Git repository : </span>
+    {{#unless edit}}
+      {{#if gitrep}}
+        <div class="span6" id="git-rep" style="float:none;display:inline-block;line-height:100%;">{{gitrep}}</div>
+        <button class="btn edit" type="button">Edit</button>
+      {{else}}
+        <input class="span6" id="git-rep" type="text" value="{{gitrep}}">
+        <button class="btn update" type="button">Update</button>
+      {{/if}}
+    {{/unless}}
+    {{#if edit}}
+      <input class="span6" id="git-rep" type="text" value="{{gitrep}}">
+      <button class="btn update" type="button">Update</button>
+    {{/if}}
+    
+  </script>
+
+  <script type="text/template" id="second-step">
+    <strong><span class="badge">2</span></strong> 
+    Add Post-Receive Hooks : <strong>http://api.dnsgit.com/notify/{{user_id}}</strong>
+  </script>
+
+  <script type="text/javascript">
+      var DnsGit = {
+        <% if (user) { %>
+          user_id: <%= user.id %>,
+          gitrep: '<%= user.gitrep %>'
+        <% } %>
+      };
+    
+  </script>
   <script type="text/javascript" data-main="/javascript/main" src="/javascript/require.js"></script>
+  
   </body>
 </html>
