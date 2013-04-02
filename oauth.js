@@ -1,5 +1,7 @@
 var request = require('request');
 var config = require('./config');
+var db = require('./db');
+var _ = require('./lib/underscore-min');
 
 
 exports.callback = function(req, res) {
@@ -33,9 +35,14 @@ exports.getUserInfo = function(req, res) {
   request(params, function(error, response, body){
     body = JSON.parse(body);
     if (body && body.info && body.info.user) {
-       var user = body.info.user;
-       user.name = user.realname || user.nick || user.id;
-       req.session.user = user; 
+      var user = body.info.user;
+      user.name = user.realname || user.nick || user.id;
+      user.access_token = req.session.access_token;
+      req.session.user = user; 
+      db.saveUser(user, function() {
+        console.log('has write to mongo');
+        console.log(user);
+      });
     }
 
     res.redirect('/');
