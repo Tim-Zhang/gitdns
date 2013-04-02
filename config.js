@@ -10,8 +10,8 @@ if (env == 'development') {
 }
 //// production only
 if (env == 'production') {
-  app_key = '10022',
-  app_secret = 'cfe1360a89e726e027edfd9bbb351679';
+  app_key = '10027',
+  app_secret = '0f3ccb8ff13c3858c78fabd77463dd0f';
 }
 
 //test
