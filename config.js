@@ -1,6 +1,19 @@
-// local
-app_key = '10021';
-app_secret = '1bd198ae75f8e57b296c59532d55a9b9';
+
+var app_key, app_secret;
+
+var env = process.env.NODE_ENV || 'development';
+
+// development only
+if (env == 'development') {
+  app_key = '10021',
+  app_secret = '1bd198ae75f8e57b296c59532d55a9b9';
+}
+//// production only
+if (env == 'production') {
+  app_key = '10022',
+  app_secret = 'cfe1360a89e726e027edfd9bbb351679';
+}
+
 //test
 //app_key = '10012';
 //app_secret = '74ceae576073170f9ccf40a4aa0f2154';
