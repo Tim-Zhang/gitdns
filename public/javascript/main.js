@@ -39,7 +39,6 @@ require(['jquery','underscore' , 'backbone', 'handlebars'], function($, _, Backb
       //this.model.fetch();
     },
     render: function(render_options) {
-      console.log('render');
       var options = _.extend({} , render_options, this.model.toJSON());
       this.$el.html(this.template(options));
       return this;
