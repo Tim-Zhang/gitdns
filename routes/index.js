@@ -15,9 +15,10 @@ exports.index = function(req, res){
     user: null
   };
   if (user) {
+
     db.getUser(user.id, function(err, docs) {
       if (docs.length) {
-        req.session.user.gitrep = docs[0].gitrep;
+         req.session.user.gitrep = docs[0].gitrep;
       }
       _.extend(options, {
         user: req.session.user
