@@ -6,7 +6,7 @@ var User = db.model('User', schema);
 
 exports.saveUser = function(user, callback) {
   User.find({id: user.id}, function(err, docs) {
-    if (docs.length) {
+    if (docs && docs.length) {
       console.log(user.access_token);
       var set = {};
       if (user.gitrep) {
