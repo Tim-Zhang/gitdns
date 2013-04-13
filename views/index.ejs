@@ -106,7 +106,7 @@
       var DnsGit = {
         <% if (user) { %>
           user_id: <%= user.id %>,
-          gitrep: <% if (user.gitrep) { %><%= user.gitrep %><% } else { %> '' <% } %>
+          gitrep: <% if (user.gitrep) { %>'<%= user.gitrep %>'<% } else { %> '' <% } %>
         <% } %>
       };
     
