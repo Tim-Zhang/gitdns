@@ -1,7 +1,7 @@
 var request = require('request');
 var config = require('./config');
 var db = require('./db');
-var _ = require('./lib/underscore-min');
+var _ = require('underscore');
 
 
 exports.callback = function(req, res) {

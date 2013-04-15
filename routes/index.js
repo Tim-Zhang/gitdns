@@ -4,7 +4,7 @@
  */
 var config = require('../config');
 var db = require('../db');
-var _ = require('../lib/underscore-min');
+var _ = require('underscore');
 
 exports.index = function(req, res){
   var user = req.session.user;
