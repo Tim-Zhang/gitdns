@@ -40,6 +40,9 @@ app.get('/logout', function(req, res) {
   res.redirect('/');
 });
 app.get('/oauth_callback', oauth.callback);
+app.get('/github_callback', function() {
+
+});
 app.get('/users', user.list);
 
 app.post('/rep', function(req, res) {
