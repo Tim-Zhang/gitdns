@@ -5,7 +5,10 @@ body {
 .jumbotron {
   padding: 20px 0;
 }
-.content .edit {
+.row.content {
+  margin-left: 0;
+}
+.row.content .edit {
   float: right;
   margin-top: -5px;
 }
