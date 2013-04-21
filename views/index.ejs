@@ -35,52 +35,19 @@
                 </li>
               <% } %>
             </ul>
-          </div><!--/.nav-collapse -->
+          </div>
         </div>
       </div>
     </div>
    <div class="container">
 
-      <!-- Main hero unit for a primary marketing message or call to action -->
-      <div class="hero-unit">
-        <h1><%= brand%></h1>
-        <p class="lead">Welcome to <%= brand %></p>
-        <% if (user) { %>
-          <form class="form-horizontal" id="setup">
-          </form>
-        <% } else { %>
-          <p class="login">
-             <a class="btn btn-primary btn-large" href="<%= login_url %>">Login With DNSPod</a>
-          </p>
-        <% } %>
-      </div>
-
-      <!-- Example row of columns -->
-      <div class="row">
-        <div class="span4">
-          <h2>Managed DNS service</h2>
-          <p>Geographic distributed name servers managed by us. You are pushing your configuration files with git and we are doing the rest.</p>
-          <p><a class="btn" href="#">View details »</a></p>
-        </div>
-        <div class="span4">
-          <h2>Git management</h2>
-          <p>Easy DNS management and deployment with git. To create a new domain, add the configuration file to git repository, to delete a domain, remove file from git repository.</p>
-          <p><a class="btn" href="#">View details »</a></p>
-       </div>
-        <div class="span4">
-          <h2>Version control</h2>
-          <p>Track changes, view history, rollback, continuous backups with git. Safe delegation of DNS administration tasks to users from your organization.</p>
-          <p><a class="btn" href="#">View details »</a></p>
-        </div>
-      </div>
-
-      <hr>
-
-      <footer>
-        <p>© <%= brand %> 2013</p>
-      </footer>
-
+    <div class="row content">
     </div>
+
+    <hr>
+    <footer>
+      <p>© <%= brand %> 2013</p>
+    </footer>
 
   <script type="text/template" id="first-step">
     <strong><span class="badge">1</span></strong> 
@@ -104,6 +71,89 @@
   <script type="text/template" id="second-step">
     <strong><span class="badge">2</span></strong> 
     Add Post-Receive Hooks : <strong>http://api.dnsgit.com/notify/{{user_id}}</strong>
+  </script>
+
+  <script type="text/template" id="banner-nologin">
+    <div class="hero-unit">
+      <h1><%= brand%> </h1>
+      <p class="lead">Welcome to <%= brand %></p>
+      <p class="login">
+         <a class="btn btn-primary btn-large" href="<%= login_url %>">Login With DNSPod</a>
+      </p>
+    </div>
+  </script>
+
+  <script type="text/template" id="feature">
+    <div class="span4">
+      <h2>Managed DNS service</h2>
+      <p>Geographic distributed name servers managed by us. You are pushing your configuration files with git and we are doing the rest.</p>
+      <p><a class="btn" href="#">View details »</a></p>
+    </div>
+    <div class="span4">
+      <h2>Git management</h2>
+      <p>Easy DNS management and deployment with git. To create a new domain, add the configuration file to git repository, to delete a domain, remove file from git repository.</p>
+      <p><a class="btn" href="#">View details »</a></p>
+    </div>
+    <div class="span4">
+      <h2>Version control</h2>
+      <p>Track changes, view history, rollback, continuous backups with git. Safe delegation of DNS administration tasks to users from your organization.</p>
+      <p><a class="btn" href="#">View details »</a></p>
+    </div>
+    </div>
+  </script>
+
+  <script type="text/template" id="domain-list">
+    <table class="table table-hover domainlist">
+      <tbody>
+      </tbody>
+    </table>
+  </script>
+
+  <script type="text/template" id="domain-entry">
+    <td>{{name}}</td>
+  </script>
+
+  <script type="text/template" id="record-list">
+    <table class="table table-condensed table-hover">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Username</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Jacob</td>
+          <td>Thornton</td>
+          <td>@fat</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td colspan="2">Larry the Bird</td>
+          <td>@twitter</td>
+        </tr>
+      </tbody>
+    </table>
+  </script>
+
+  <script type="text/template" id="alert">
+    <div class="alert alert-error">
+      {{#if close}}
+      <button type="button" class="close" data-dismiss="alert">×</button>
+      {{/if}}
+      {{#if msg_important}}<strong>{{msg_important}}</strong> {{/if}}
+      {{msg}} 
+    </div>
+  
   </script>
 
   <script type="text/javascript">

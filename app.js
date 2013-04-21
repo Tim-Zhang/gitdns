@@ -9,6 +9,7 @@ var express = require('express')
   , config = require('./config')
   , routes = require('./routes')
   , user = require('./routes/user')
+  , api = require('./routes/api')
   , db = require('./db')
   , oauth = require('./oauth');
 
@@ -61,10 +62,25 @@ app.post('/rep', function(req, res) {
    });
 });
 
-app.get('/rep', function(req, res) {
-   //db.saveUser();
-  
+//
+// API
+//
+app.get(/^\/api\/(\w+)(\/(\w+))?$/, function(req, res) {
+  var method = req.params[0];
+  var options = {
+    id: req.params[2],
+    method: method
+  }
+  res.set('Cache-Control', 'no-store, no-cache, must-revalidate');
+  api.validate(req, res, options);
+  if (api[method]) {
+    api[method].call(this, req, res, options);
+  } else {
+    res.send(404, 'method not exist');
+  }
 });
+
+
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));

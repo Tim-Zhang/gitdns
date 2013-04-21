@@ -11,6 +11,7 @@
     "request": "*",
     "qs": "*",
     "mongoose": "*",
-    "underscore": "*"
+    "underscore": "*",
+    "string": "*"
   }
 }
