@@ -55,7 +55,7 @@
     {{#unless edit}}
       {{#if gitrep}}
         <div class="span6" id="git-rep" style="float:none;display:inline-block;line-height:100%;">{{gitrep}}</div>
-        <button class="btn edit" type="button">Edit</button>
+        <button class="btn edit btn-primary" type="button">Edit</button>
       {{else}}
         <input class="span6" id="git-rep" type="text" value="{{gitrep}}">
         <button class="btn update" type="button">Update</button>
@@ -63,7 +63,8 @@
     {{/unless}}
     {{#if edit}}
       <input class="span6" id="git-rep" type="text" value="{{gitrep}}">
-      <button class="btn update" type="button">Update</button>
+      <button class="btn update btn-success" type="button">Update</button>
+      <button class="btn cancel btn-info" type="button">Cancel</button>
     {{/if}}
     
   </script>
@@ -103,7 +104,7 @@
   </script>
 
   <script type="text/template" id="domain-list">
-    <table class="table table-hover domainlist">
+    <table class="table table-hover">
       <tbody>
       </tbody>
     </table>
@@ -113,39 +114,33 @@
     <td>{{name}}</td>
   </script>
 
+  <script type="text/template" id="record-entry">
+    <td>{{name}}</td>
+    <td>{{type}}</td>
+    <td>{{line}}</td>
+    <td>{{value}}</td>
+    <td>{{mx}}</td>
+    <td>{{ttl}}</td>
+  </script>
+
   <script type="text/template" id="record-list">
     <table class="table table-condensed table-hover">
       <thead>
         <tr>
-          <th>#</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Username</th>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Line</th>
+          <th>Value</th>
+          <th>MX</th>
+          <th>TTL</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1</td>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td colspan="2">Larry the Bird</td>
-          <td>@twitter</td>
-        </tr>
       </tbody>
     </table>
   </script>
 
-  <script type="text/template" id="alert">
+  <script type="text/template" id="alert-error">
     <div class="alert alert-error">
       {{#if close}}
       <button type="button" class="close" data-dismiss="alert">×</button>
@@ -154,6 +149,10 @@
       {{msg}} 
     </div>
   
+  </script>
+
+  <script type="text/template" id="loading">
+    <img src="/images/loading.gif"/> 
   </script>
 
   <script type="text/javascript">

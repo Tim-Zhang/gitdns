@@ -68,7 +68,7 @@ app.post('/rep', function(req, res) {
 app.get(/^\/api\/(\w+)(\/(\w+))?$/, function(req, res) {
   var method = req.params[0];
   var options = {
-    id: req.params[2],
+    domain_id: req.params[2],
     method: method
   }
   res.set('Cache-Control', 'no-store, no-cache, must-revalidate');

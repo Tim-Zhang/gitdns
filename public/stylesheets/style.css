@@ -34,12 +34,19 @@ body {
   -moz-border-radius: 4px 0 4px 0;
   border-radius: 4px 0 4px 0;
 }
-table.domainlist tr:first-child td {
+.loading-img {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.domainlist tr:first-child td {
   border-top: 0;
 }
-table.domainlist tr:hover {
+.domainlist tr:hover {
   cursor: pointer;
 }
-table.recordlist tr:first-child td {
-  border-top: 0;
+.recordlist .title:hover {
+  cursor: pointer;
+}
+.recordlist .icon-home {
+  margin: 0 5px 0 0;
 }

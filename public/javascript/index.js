@@ -1,4 +1,4 @@
-define(['jquery','underscore' , 'backbone', 'handlebars'], function($, _, Backbone, Handlebars) {
+define(['jquery','underscore' , 'backbone', 'handlebars', 'helper'], function($, _, Backbone, Handlebars, Helper) {
   var userModel = Backbone.Model.extend({
     url: '/rep'
   });
@@ -20,8 +20,12 @@ define(['jquery','underscore' , 'backbone', 'handlebars'], function($, _, Backbo
   var step1View = stepView.extend({
     events: {
       'click .update': 'update',
+      'click .cancel': 'cancel',
       'click .edit': 'edit',
       'click div#git-rep': 'edit'
+    },  
+    cancel: function(e) {
+      this.render();
     },  
     edit: function(e) {
       e.preventDefault();
@@ -73,13 +77,19 @@ define(['jquery','underscore' , 'backbone', 'handlebars'], function($, _, Backbo
     }
   });
 
-  var domainModel = Backbone.Model.extend({
-  });
-
   var domainListCollection = Backbone.Collection.extend({
     url: '/api/domainlist',
-    model: domainModel
+    model: Backbone.Model 
   });
+
+  var recordListCollection = Backbone.Collection.extend({
+    url: '/api/recordlist/',
+    model: Backbone.Model,
+    initialize: function(options) {
+      this.url += options.domain_id; 
+    }
+  });
+  
   var domainView = Backbone.View.extend({
     tagName: 'tr',
     template: Handlebars.compile($('#domain-entry').html()),
@@ -97,31 +107,108 @@ define(['jquery','underscore' , 'backbone', 'handlebars'], function($, _, Backbo
       Backbone.trigger('navigate', this.model.get('name'), true);
     }
   });
+
+  var recordView = Backbone.View.extend({
+    tagName: 'tr',
+    template: Handlebars.compile($('#record-entry').html()),
+    initialize: function(options) {
+      this.render(options);
+    },
+    render: function(options) {
+      this.$el.html(this.template(this.model.attributes));
+      return this;
+    }
+  });
+  
   var domainListView = Backbone.View.extend({
-    className: 'bs-docs-example',
+    className: 'bs-docs-example domainlist',
     template: Handlebars.compile($('#domain-list').html()),
     initialize: function(options) {
       this.listenTo(this.collection, 'add', this.addOne);
       this.listenTo(this.collection, 'reset', this.addAll);
       this.listenTo(this.collection, 'error', this.showError);
+      this.listenTo(this.collection, 'all', this.removeLoading);
       this.collection.fetch();
       this.render(options);
+      this.loading();
     },
     showError: function(model, xhr, options) {
-      console.log(model, xhr, options);
+      var responseJson = JSON.parse(xhr.responseText);
+      var message = responseJson.status.message;
+      var errorView = new Helper.view.alertError({msg: message});
+
+      this.$el.append(errorView.el);
+
     },
     addOne: function(model) {
-      var view = new domainView({model: model}); 
+      var view = new domainView({model: model});
       this.$('tbody').append(view.render().el);
     },
     addAll: function() {
-      console.log('add all');
       this.collection.each(this.addOne, this);
+    },
+    loading: function() {
+      this.loadingView = new Helper.view.loading();
+      this.$el.append(this.loadingView.el);
+    },
+    removeLoading: function() {
+      this.loadingView && this.loadingView.remove();
     },
     render: function(options) {
       this.$el.html(this.template());
       addTitle(this.$el, options.title);
       return this;
+    }
+  });
+
+  var recordListView = Backbone.View.extend({
+    events: {
+      'click .title': 'toDomainList' 
+    },
+    className: 'bs-docs-example recordlist',
+    template: Handlebars.compile($('#record-list').html()),
+    initialize: function(options) {
+      this.listenTo(this.collection, 'add', this.addOne);
+      this.listenTo(this.collection, 'reset', this.addAll);
+      this.listenTo(this.collection, 'error', this.showError);
+      this.listenTo(this.collection, 'all', this.removeLoading);
+      this.collection.fetch();
+      this.render(options);
+      this.loading();
+    },
+    toDomainList: function() {
+      Backbone.trigger('navigate', '', true);
+    },
+    showError: function(model, xhr, options) {
+      var responseJson = JSON.parse(xhr.responseText);
+      var message = responseJson.status.message;
+      var errorView = new Helper.view.alertError({msg: message});
+      this.$el.append(errorView.el);
+    },
+    addOne: function(model) {
+      var view = new recordView({model: model});
+      this.$('tbody').append(view.render().el);
+    },
+    addAll: function() {
+      this.collection.each(this.addOne, this);
+    },
+    loading: function() {
+      this.loadingView = new Helper.view.loading();
+      this.$el.append(this.loadingView.el);
+    },
+    removeLoading: function() {
+      this.loadingView && this.loadingView.remove();
+    },
+    render: function(options) {
+      console.log(this.events);
+      this.$el.html(this.template());
+      addTitle(this.$el, options.title);
+      this.addCrumbs();
+      return this;
+    },
+    addCrumbs: function() {
+      var crumbs = '<i class="icon-home"></i>';
+      this.$('.title').prepend(crumbs);
     }
   });
 
@@ -131,9 +218,11 @@ define(['jquery','underscore' , 'backbone', 'handlebars'], function($, _, Backbo
       Backbone.on('navigate', function(route, option) {
         this.navigate(route, option)
       }, this);
+      this.route(/^(.+[\.。][^\/]+)$/, "record", this.records);
     },
     routes: {
-      '': 'default'
+      '': 'default',
+      ':domain_name': ''
     },
     default: function() {
       if (DnsGit.user_id) {
@@ -145,17 +234,37 @@ define(['jquery','underscore' , 'backbone', 'handlebars'], function($, _, Backbo
     login_index: function() {
       var user = new userModel(DnsGit);
       var setup = new setupView({model: user, title: 'Setup'});
-      var domainlist = new domainListCollection();
-      var domainlist_view = new domainListView({collection: domainlist, title: 'DomainList'});
-      console.log(domainlist);
+      $('.content').html('');
       $('.content').append(setup.el);
-      $('.content').append(domainlist_view.el);
+      this.domains();
     },
     nologin_index: function() {
       var banner = new commonView({template: 'banner-nologin'});
       var feature = new commonView({template: 'feature'});
+      $('.content').html('');
       $('.content').append(banner.el);
       $('.content').append(feature.el);
+    },
+    domains: function() {
+      this.domainlist = new domainListCollection();
+      var domainlist_view = new domainListView({collection: this.domainlist, title: 'DomainList'});
+      $('.content').append(domainlist_view.el);
+    },
+    records: function(domain_name) {
+      if (/。/.test(domain)) {
+        Backbone.trigger('navigate', domain_name.replace('。', '.'), true);
+        return false;
+      }  
+      var domain = this.domainlist && this.domainlist.findWhere({name: domain_name});
+      if(!domain) {
+        Backbone.trigger('navigate', '', true);
+        return false;
+      }
+      var domain_id = domain.get('id');
+      var recordlist = new recordListCollection({domain_id: domain_id});
+      var recordlist_view = new recordListView({collection: recordlist, title: domain_name});
+      $('.content .domainlist').remove();
+      $('.content').append(recordlist_view.el);
     }
   });
 
