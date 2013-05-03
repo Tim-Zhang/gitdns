@@ -66,8 +66,12 @@ define(['jquery','underscore' , 'backbone', 'handlebars', 'helper'], function($,
   });
 
   var commonView = Backbone.View.extend({
+    className: function() {
+      return this.className;
+    },
     template: Handlebars.compile($('#banner-nologin').html()),
     initialize: function(options) {
+      this.className = options.className;
       this.template = Handlebars.compile($('#' + options.template).   html());
       this.render();
     },
@@ -240,7 +244,7 @@ define(['jquery','underscore' , 'backbone', 'handlebars', 'helper'], function($,
     },
     nologin_index: function() {
       var banner = new commonView({template: 'banner-nologin'});
-      var feature = new commonView({template: 'feature'});
+      var feature = new commonView({template: 'feature', className: 'row'});
       $('.content').html('');
       $('.content').append(banner.el);
       $('.content').append(feature.el);
