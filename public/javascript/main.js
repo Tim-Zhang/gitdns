@@ -21,7 +21,8 @@ require.config({
         exports: 'Handlebars'
       }
   },
-  urlArgs: "bust=" +  (new Date()).getTime()
+  //urlArgs: "bust=" +  (new Date()).getTime()
+  urlArgs: "bust=v2"
   
 });
 

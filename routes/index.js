@@ -23,7 +23,6 @@ exports.index = function(req, res){
       _.extend(options, {
         user: req.session.user
       });
-      console.log(options);
       res.render('index', options);
     }); 
   } else {
