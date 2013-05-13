@@ -53,51 +53,10 @@ body {
 .recordlist .icon-home {
   margin: 0 5px 0 0;
 }
-/* github */
 @font-face {
   font-family: 'Octicons Regular';
   src: url("https://a248.e.akamai.net/assets.github.com/assets/octicons/octicons-regular-webfont-f8cb074da115b589d1518e9701e5ce0145a9a04b.eot");
   src: url("https://a248.e.akamai.net/assets.github.com/assets/octicons/octicons-regular-webfont-f8cb074da115b589d1518e9701e5ce0145a9a04b.eot#iefix") format("embedded-opentype"), url("https://a248.e.akamai.net/assets.github.com/assets/octicons/octicons-regular-webfont-ca94a86a0e39e28efb023a130cb748731bb0ab58.woff") format("woff"), url("https://a248.e.akamai.net/assets.github.com/assets/octicons/octicons-regular-webfont-83378e6a590d9a4a7242c6cf23f1a1b49ce7aa14.ttf") format("truetype"), url("https://a248.e.akamai.net/assets.github.com/assets/octicons/octicons-regular-webfont-e1451ddc22ffbea19d2e8fca0742d5667940b793.svg#newFontRegular") format("svg");
   font-weight: normal;
   font-style: normal;
-}
-.page-new-repo .owner-reponame {
-  position: relative;
-}
-.page-new-repo .owner-reponame .icon-preview {
-  text-align: right;
-  display: inline-block;
-  position: relative;
-}
-.page-new-repo .owner-reponame .icon-preview .label {
-  color: #BBB;
-  top: 12px;
-}
-.mega-icon-public-repo::before {
-  content: "";
-}
-.mini-icon, .mega-icon {
-  font-family: 'Octicons Regular';
-  font-weight: normal;
-  font-style: normal;
-  display: inline-block;
-  text-decoration: inherit;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  line-height: 1;
-  text-decoration: none;
-}
-.mega-icon {
-  font-size: 32px;
-  width: 32px;
-  height: 32px;
-}
-.page-new-repo .owner-reponame .icon-preview .mega-icon, .page-new-repo .owner-reponame .icon-preview .label {
-  text-align: right;
-  display: inline-block;
-  position: relative;
-}
-.page-new-repo .owner-reponame .icon-preview-public .mega-icon-public-repo {
-  color: #BBB;
-  top: 12px;
 }

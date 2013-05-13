@@ -1,7 +1,14 @@
 
 var app_key, app_secret;
+var github = {};
 
 var env = process.env.NODE_ENV || 'development';
+
+// github
+github.key = 'b688d87e04c1c54c4bd8';
+github.secret = 'cc0be9f905ebf1ff20acd8db3048d7ce3eb3301b';
+github.accesstoken_url = 'https://github.com/login/oauth/access_token';
+github.userInfo_url = 'https://www.dnspod.cn/user';
 
 // development only
 if (env == 'development') {
@@ -25,6 +32,9 @@ var login_url = dnspod_url + "?client_id=" + app_key + "&redirect_uri" + redirec
 // exports
 exports.app_key = app_key;
 exports.app_secret = app_secret;
+
+exports.github = github;
+
 exports.login_url = login_url;
 exports.accesstoken_url = 'https://www.dnspod.cn/OAuth/Access.Token';
 exports.userInfo_url = 'https://dnsapi.cn/User.Detail';

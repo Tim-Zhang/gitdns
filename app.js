@@ -12,6 +12,7 @@ var express = require('express')
   , github = require('./routes/github')
   , api = require('./routes/api')
   , db = require('./db')
+  , github_oauth = require('./github_oauth')
   , oauth = require('./oauth');
 
 require('./db');
@@ -52,7 +53,7 @@ app.get('/logout', function(req, res) {
   res.redirect('/');
 });
 app.get('/oauth_callback', oauth.callback);
-app.get('/github_callback', github.index);
+app.get('/github_callback', github_oauth.callback);
 app.get('/users', user.list);
 
 app.post('/rep', function(req, res) {
