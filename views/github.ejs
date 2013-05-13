@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/bootstrap/css/bootstrap.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/bootstrap/css/bootstrap-responsive.css' />
+  </head>
+  <body class="page-new-repo">
+    <% include module/navbar %>
+
+  <div class="container">
+    <div class="row content">
+      <div class="new-repo-container">
+        <div class="owner-reponame clearfix">
+          <div class="icon-preview icon-preview-public js-icon-preview-public" style="display: block; ">
+            <span class="label">public</span>
+            <span class="mega-icon mega-icon-public-repo"></span>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+
+    <hr>
+    <footer>
+      <p>© <%= brand %> 2013</p>
+    </footer>
+
+  
+  </body>
+</html>

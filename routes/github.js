@@ -13,7 +13,7 @@ exports.index = function(req, res){
     brand: 'DnsGit',
     login_url: config.login_url,
     user: null,
-    navigation: ''
+    navigation: 'github'
   };
   if (user) {
 
@@ -24,10 +24,10 @@ exports.index = function(req, res){
       _.extend(options, {
         user: req.session.user
       });
-      res.render('index', options);
+      res.render('github', options);
     }); 
   } else {
-    res.render('index', options);
+    res.render('github', options);
   }
 };
 
