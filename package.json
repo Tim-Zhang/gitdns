@@ -12,6 +12,8 @@
     "qs": "*",
     "mongoose": "*",
     "underscore": "*",
-    "string": "*"
+    "string": "*",
+    "moment": "*",
+    "express-validator": "*"
   }
 }

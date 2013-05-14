@@ -10,56 +10,71 @@
   <body class="page-new-repo">
     <% include module/navbar %>
 
-  <div class="container">
-    <div class="row content">
-      <div class="new-repo-container">
-        <div class="owner-reponame clearfix">
-          <div class="github-icon-preview github-icon-preview-public js-icon-preview-public" style="display: block; ">
-            <span class="label-github">public</span>
-            <span class="mega-icon mega-icon-public-repo"></span>
-          </div>
-          <dl class="form owner">
-          <dt><label for="repository_owner">Owner</label></dt>
-          <dd>
-            <div class="select-menu js-menu-container js-select-menu js-owner-container">
-              <span class="minibutton select-menu-button with-gravatar js-menu-target">
-                <div class="select-menu-button-gravatar js-select-button-gravatar">
-                  <img height="20" src="https://secure.gravatar.com/avatar/f91eb8f2dc861efca03e49558ff90f04?s=140&amp;d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png" width="20">
+    <div class="container">
+      <div class="row content">
+        <div class="new-repo-container">
+          <form method="post">
+            <div class="owner-reponame clearfix">
+              <div class="github-icon-preview github-icon-preview-public js-icon-preview-public" style="display: block; ">
+                <span class="label-github">public</span>
+                <span class="mega-icon mega-icon-public-repo"></span>
+              </div>
+              <dl class="form owner">
+                <dt><label for="repository_owner">Owner</label></dt>
+                <dd>
+                <div class="select-menu js-menu-container js-select-menu js-owner-container">
+                  <span class="minibutton select-menu-button with-gravatar js-menu-target">
+                    <div class="select-menu-button-gravatar js-select-button-gravatar">
+                      <img height="20" src="<%= github.avatar_url %>" width="20">
+                    </div>
+                    <span class="js-select-button"><%= github.login %></span>
+                  </span>
                 </div>
-                <span class="js-select-button">zewenzhang</span>
-              </span>
+
+                </dd>
+              </dl>
+              <span class="slash with-permission-fields" style="">/</span>
+              <dl class="form reponame">
+                <dt>
+                <div class="fieldWithErrors"><label autocapitalize="off" class="js-repo-name short with-permission-fields" data-autocheck-url="/repositories/check-name" error="false" for="repository_name" maxlength="100" name="github_repository_name" tabindex="2" style="">Repository name</label></div>
+                </dt>
+                <dd>
+                <div class="fieldWithErrors"><input autocapitalize="off" class="js-repo-name short with-permission-fields" id="repository_name" maxlength="100" name="customer[custom_fields][github_repository_name]" size="100" tabindex="2" type="text" style="" value="<%= github.rep_name %>"></div>
+                </dd>
+              </dl>
+            </div>
+            <!-- end owner-reponame -->
+
+            <div class="with-permission-fields">
+              <dl class="form">
+                <dt><label for="repository_description">Description</label> <span class="note">(optional)</span></dt>
+                <dd>
+                <div class="fieldWithErrors"><input class="long" id="repository_description" name="customer[custom_fields][github_repository_description]" size="30" tabindex="4" type="text"></div>
+                </dd>
+              </dl>
             </div>
 
-          </dd>
-        </dl>
-        <span class="slash with-permission-fields" style="">/</span>
-        <dl class="form reponame">
-    <dt><div class="fieldWithErrors"><label autocapitalize="off" class="js-repo-name short with-permission-fields" data-autocheck-url="/repositories/check-name" error="false" for="repository_name" maxlength="100" name="customer[custom_fields][github_repository_name]" tabindex="2" style="">Repository name</label></div></dt>
-    <dd><div class="fieldWithErrors"><input autocapitalize="off" class="js-repo-name short with-permission-fields" id="repository_name" maxlength="100" name="customer[custom_fields][github_repository_name]" size="100" tabindex="2" type="text" style=""></div></dd></dl>
+            <div class="newrep-action">
+              <button type="submit" class="btn btn-success btn-github">Create repository</button>
+            </div>
+            <div class="alert alert-error" style="display:none">
+              <strong class="message"></strong>
+            </div>
+            <div class="alert alert-success" style="display:none">
+              <strong>Well done!</strong> You successfully create a github repository for dnsgit.<br/>
+              Check it now -> <strong> <a target="_blank" class="github-link"></a></strong>
+            </div>
+        </form>
+
         </div>
 
-        <div class="with-permission-fields">
-          <dl class="form">
-            <dt><label for="repository_description">Description</label> <span class="note">(optional)</span></dt>
-            <dd>
-              <div class="fieldWithErrors"><input class="long" id="repository_description" name="customer[custom_fields][github_repository_description]" size="30" tabindex="4" type="text"></div>
-            </dd>
-          </dl>
-        </div>
-    
-        <div class="newrep-action">
-        <button type="button" class="btn btn-success btn-github">Create repository</button>
-        </div>
-        
       </div>
 
-    </div>
-
-    <hr>
-    <footer>
+      <hr>
+      <footer>
       <p>© <%= brand %> 2013</p>
-    </footer>
+      </footer>
 
-  
-  </body>
-</html>
+      <script type="text/javascript" data-main="/javascript/github" src="/javascript/require.js"></script>
+    </body>
+  </html>

@@ -23,7 +23,7 @@ exports.index = function(req, res){
         req.session.user.gitrep = docs[0].gitrep;
       }
       _.extend(options, {
-        user: req.session.user
+        user: user
       });
       res.render('index', options);
     }); 

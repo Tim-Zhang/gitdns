@@ -3,7 +3,8 @@ require.config({
   paths: {
     'jquery': 'jquery-1.9.1.min',
     'underscore': 'underscore-min',
-    'backbone': 'backbone-min'
+    'backbone': 'backbone-min',
+    'showloading': 'plugin/jquery.showLoading.min'
   },
   shim: {
     'backbone': {
@@ -25,7 +26,3 @@ require.config({
   urlArgs: "bust=v2"
   
 });
-
-require(['index']);
-
-require(['plugin/dropdown']);

@@ -19,6 +19,7 @@ exports.callback = function(req, res) {
   };
   request.post(params, function(error, response, body){
     body = JSON.parse(body);
+    console.log(body);
     req.session.access_token = body.access_token;
     exports.getUser(req, res);
   });

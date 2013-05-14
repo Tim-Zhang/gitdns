@@ -13,16 +13,20 @@ var express = require('express')
   , api = require('./routes/api')
   , db = require('./db')
   , github_oauth = require('./github_oauth')
+  , expressValidator = require('express-validator')
   , oauth = require('./oauth');
 
-require('./db');
 var app = express();
 
 // set Expire Header
 app.use(function(req, res, next) {
-  res.setHeader("age", "348759"); 
-  res.setHeader("Cache-Control", "max-age=315360000");
-  res.setHeader("Expires", "Sat, 06 May 2023 12:28:31 GMT");
+  if (/(\.css|\.png|\.jpg|\.jpeg|\.js)$/.test(req.url)) {
+    res.set({
+       "age": "348759",
+       "Cache-Control": "max-age=315360000",
+       "Expires": "Sat, 06 May 2023 12:28:31 GMT"
+    });
+  }
   next();
 });
 
@@ -50,8 +54,11 @@ app.configure('development', function(){
 app.get('/', routes.index);
 app.get('/logout', function(req, res) {
   req.session.user = null;
+  console.log(req.session);
   res.redirect('/');
 });
+app.get('/github', github.index);
+
 app.get('/oauth_callback', oauth.callback);
 app.get('/github_callback', github_oauth.callback);
 app.get('/users', user.list);
@@ -73,22 +80,34 @@ app.post('/rep', function(req, res) {
 });
 
 //
-// API
+// DNSPod API
 //
-app.get(/^\/api\/(\w+)(\/(\w+))?$/, function(req, res) {
+app.get(/^\/dnspod\/(\w+)(\/(\w+))?$/, function(req, res) {
+  res.set('Cache-Control', 'no-store, no-cache, must-revalidate');
+
   var method = req.params[0];
   var options = {
     domain_id: req.params[2],
     method: method
   }
-  res.set('Cache-Control', 'no-store, no-cache, must-revalidate');
-  api.validate(req, res, options);
+  var validate = api.validator(method, req, res, options);
+  if (validate) {
+    res.send.apply(res, validate);
+    return;
+  }
   if (api[method]) {
     api[method].call(this, req, res, options);
   } else {
     res.send(404, 'method not exist');
   }
 });
+
+//
+// GitHub API
+//
+
+app.post('/github/new', github.new);
+
 
 
 

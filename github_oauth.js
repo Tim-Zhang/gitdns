@@ -30,32 +30,22 @@ exports.callback = function(req, res) {
 exports.getUser = function(req, res) {
   var session = req.session
   var access_token = session.github.access_token;
-  console.log(access_token);
   var params = {
     uri: URI.user,
-    method: 'GET',
-    body: 'access_token=' + access_token,
+    qs: {access_token: access_token}, 
     headers: {
       'content-type': 'application/x-www-form-urlencoded',
       'User-Agent': 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.52 Safari/537.17'
     }
   };
-  console.log(params);
   request(params, function(error, response, body){
-    res.send(body);
-    //body = JSON.parse(body);
-    //if (body && body.info && body.info.user) {
-    //  var user = body.info.user;
-    //  user.name = user.realname || user.nick || user.id;
-    //  user.access_token = req.session.access_token;
-    //  req.session.user = user; 
-    //  db.saveUser(user, function() {
-    //    console.log('has write to mongo');
-    //    console.log(user);
-    //  });
-    //}
-
-    //res.redirect('/');
+    body = JSON.parse(body);
+    if (body && body.login) {
+      _.extend(req.session.github, body);
+      res.redirect('/github');
+    } else {
+      res.send(body);
+    }
   });
 
 
