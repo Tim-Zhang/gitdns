@@ -11,7 +11,8 @@ exports.index = function(req, res){
   var options = {
     title: 'DnsGit',
     brand: 'DnsGit',
-    login_url: config.login_url,
+    dnspod_login_url: config.dnspod.uri.login,
+    github_login_url: config.github.uri.login,
     user: null,
     navigation: ''
   };

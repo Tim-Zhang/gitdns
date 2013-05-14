@@ -3,29 +3,31 @@ var config = require('./config');
 var db = require('./db');
 var _ = require('underscore');
 
+var DNSPOD = config.dnspod;
+var URI = config.dnspod.uri;
 
 exports.callback = function(req, res) {
   var code = req.query.code;
   var params = {
-    uri: config.accesstoken_url,
+    uri: URI.accesstoken,
     form: {
       code: code,
-      client_id: config.app_key,
-      client_secret: config.app_secret,
+      client_id: DNSPOD.key,
+      client_secret: DNSPOD.secret,
       grant_type: 'authorization_code'
     } 
   };
   request.post(params, function(error, response, body){
     body = JSON.parse(body);
     req.session.access_token = body.access_token;
-    exports.getUserInfo(req, res);
+    exports.getUser(req, res);
   });
 }
 
-exports.getUserInfo = function(req, res) {
+exports.getUser = function(req, res) {
   var access_token = req.session.access_token;
   var params = {
-    uri: config.userInfo_url,
+    uri: URI.user,
     method: 'POST',
     body: 'format=json&access_token=' + access_token,
     headers: {

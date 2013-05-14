@@ -11,7 +11,9 @@
             <ul class="nav">
               <li><a href="http://docs.dnsgit.com/">Docs</a></li>
               <li><a href="https://github.com/zewenzhang/dnsgit-demo" target="_blank">GitHub Demo</a></li>
-              <li <%if (navigation == 'github') {%>class="active"<%}%> ><a href="https://github.com/login/oauth/authorize?client_id=b688d87e04c1c54c4bd8&scope=public_repo&redirect_uri=http://localhost:5000/github_callback">Create GitHub Repo</a></li>
+              <% if (user) { %>
+                <li <%if (navigation == 'github') {%>class="active"<%}%> ><a href="<%= github_login_url %>">Create GitHub Repo</a></li>
+              <% } %>
             </ul>
             <ul class="nav pull-right">
               <% if (user) { %>
@@ -23,7 +25,7 @@
                 </li>
               <% } else { %>
                 <li>
-                  <a href="<%= login_url %>">Login With DNSPod</a>
+                  <a href="<%= dnspod_login_url %>">Login With DNSPod</a>
                 </li>
               <% } %>
             </ul>
