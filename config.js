@@ -16,6 +16,7 @@ github.uri.redirect = 'http://localhost:3000/github_callback';
 github.uri.login = github.uri.authorize + '?client_id=' + github.key + '&scope=public_repo&redirect_uri=' + github.uri.redirect;
 github.uri.accesstoken = 'https://github.com/login/oauth/access_token';
 github.uri.user= 'https://api.github.com/user';
+github.uri.rep = 'https://api.github.com/user/repos';
 
 /* dnspod */
 // development only

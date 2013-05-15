@@ -47,6 +47,8 @@ exports.getUser = function(req, res) {
       res.send(body);
     }
   });
+}
 
+exports.createRep = function(req, res) {
 
 }
