@@ -36,7 +36,6 @@ exports.validator = function(method, req, res, options) {
 
 
 exports.domainlist = function(req, res, options) {
-  console.log('domainlist');
   need_access_token(req, res);
   var access_token = req.session.user.access_token;
   domain.list(access_token, function(err, response, body) {

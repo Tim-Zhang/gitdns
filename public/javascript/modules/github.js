@@ -17,19 +17,30 @@ define(['jquery','underscore' , 'backbone', 'handlebars'], function($, _, Backbo
       e.preventDefault();
       var rep_name = this.$('#repository_name').val();
       var desc = this.$('#repository_description').val();
-      this.model.set({rep_name: rep_name, desc: desc});
+      this.model.set({name: rep_name, description: desc});
       this.model.save();
     },
-    showErr: function(msg) {
-      this.hideLoading();
+    showErr: function(model, xhr, options) {
+      this.hidePrompt();
+      var responseJson = JSON.parse(xhr.responseText);
+      var errors = responseJson.errors;
+      var msg = responseJson.message;
+      if (errors && errors[0]) {
+        msg += ' : ' + errors[0].message;
+      }
       this.$('.alert-error .message').html(msg);
       this.$('.alert-error').show();
     },
-    showSuc: function() {
-      this.hideLoading();
-      var rep_href = 'test';
+    showSuc: function(model, xhr, options) {
+      this.hidePrompt();
+      var rep_href = xhr.github_url;
       this.$('.alert-success .github-link').attr('href', rep_href).html(rep_href);
       this.$('.alert-success').show();
+    },
+    hidePrompt: function() {
+      this.hideLoading();
+      this.$('.alert-error').hide();
+      this.$('.alert-success').hide();
     },
     showLoading: function() {
       console.log('showloading');

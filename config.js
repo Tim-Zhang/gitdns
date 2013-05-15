@@ -10,13 +10,18 @@ var env = process.env.NODE_ENV || 'development';
 /* github */
 github.key = 'b688d87e04c1c54c4bd8';
 github.secret = 'cc0be9f905ebf1ff20acd8db3048d7ce3eb3301b';
+github.collaborator = 'zewenzhang';
 
 github.uri.authorize = 'https://github.com/login/oauth/authorize';
 github.uri.redirect = 'http://localhost:3000/github_callback';
-github.uri.login = github.uri.authorize + '?client_id=' + github.key + '&scope=public_repo&redirect_uri=' + github.uri.redirect;
+github.uri.login = github.uri.authorize + '?client_id=' + github.key + '&scope=public_repo,repo&redirect_uri=' + github.uri.redirect;
 github.uri.accesstoken = 'https://github.com/login/oauth/access_token';
 github.uri.user= 'https://api.github.com/user';
 github.uri.rep = 'https://api.github.com/user/repos';
+github.uri.hook = 'https://api.github.com/repos/{{owner}}/{{repo}}/hooks';
+github.uri.key = 'https://api.github.com/repos/{{owner}}/{{repo}}/keys';
+github.uri.collaborator = 'https://api.github.com/repos/{{owner}}/{{repo}}/collaborators/{{user}}';
+
 
 /* dnspod */
 // development only
