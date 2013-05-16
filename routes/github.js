@@ -2,13 +2,16 @@
 /*
  * GET home page.
  */
-var config = require('../config');
-var db = require('../db');
 var _ = require('underscore');
 var moment = require('moment');
-var github_oauth = require('../github_oauth');
 var async = require('async');
 var S = require('string');
+var exec = require('child_process').exec;
+
+var config = require('../config');
+var db = require('../db');
+var github_oauth = require('../github_oauth');
+var file = require('../lib/file');
 
 var GITHUB = config.github;
 var URI = config.github.uri;
@@ -22,17 +25,59 @@ exports.index = function(req, res){
 };
 
 exports.new = function(req, res) {
-  var REPINFO;
+  var REPINFO, FILENAME;
   var session = req.session;
   var access_token = session.github.access_token;
+  var dnspod_access_token = session.user.access_token;
   async.waterfall([
     // create rep
     function(callback){
       github_oauth.createRep(access_token, req.body, callback);
     },
-    // create hook
+    // create collaborator
     function(rep_info, callback){
       REPINFO = rep_info;
+      var uri_values = {owner: REPINFO.owner.login, repo: REPINFO.name, user: GITHUB.collaborator};
+      var uri = S(URI.collaborator).template(uri_values).s;
+      var params = {};
+      github_oauth.createCollaborator(access_token,uri, params, callback);
+    },
+    // save git-rep url
+    function(info, callback) {
+      console.log(REPINFO);
+      var user = {
+        id: session.user.id,
+        gitrep: REPINFO.html_url
+      }
+      db.saveUser(user, function(err) {
+        callback(err);
+      });
+    },
+    // create file
+    function (callback) {
+      FILENAME = REPINFO.name + '-' + session.user.id;
+      file.create_files(dnspod_access_token, FILENAME, callback);
+    },
+    // push file
+    function (info, callback) {
+      var cmd = [
+        'cd ' + file.path(FILENAME),
+        'git init',
+        'git add -A',
+        'git cm "create by dnsgit"',
+        'git remote add origin '+ REPINFO.ssh_url,
+        'git push origin master'
+      ];
+      var command = cmd.join('&&');
+      exec(command, callback);
+    },
+    // drop file
+    function (stdout, stderr, callback) {
+      console.log('drop file');
+      callback(null, 'drop file done');
+    },
+    // create hook
+    function(info, callback){
       var uri_values = {owner: REPINFO.owner.login, repo: REPINFO.name};
       var uri = S(URI.hook).template(uri_values).s;
       var params = {
@@ -41,14 +86,8 @@ exports.new = function(req, res) {
         config: {url: 'http://api.dnsgit.com/notify/' + session.user.id, content_type: 'json'},
       };
       github_oauth.createHook(access_token,uri, params, callback);
-    },
-    // create collaborator
-    function(hook_info, callback){
-      var uri_values = {owner: REPINFO.owner.login, repo: REPINFO.name, user: GITHUB.collaborator};
-      var uri = S(URI.collaborator).template(uri_values).s;
-      var params = {};
-      github_oauth.createCollaborator(access_token,uri, params, callback);
     }
+
   ], function (err, result) {
     if (!err) {
       _.extend(result, {github_url: REPINFO.html_url});

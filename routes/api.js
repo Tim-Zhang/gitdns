@@ -20,7 +20,7 @@ var need_domain_id = function(req, res, options) {
 
 var validate_map = {
   "domainlist": [need_access_token],
-  "recordlist": [need_domain_id]
+  "recordlist": [need_access_token, need_domain_id]
 };
 
 exports.validator = function(method, req, res, options) {
@@ -36,7 +36,6 @@ exports.validator = function(method, req, res, options) {
 
 
 exports.domainlist = function(req, res, options) {
-  need_access_token(req, res);
   var access_token = req.session.user.access_token;
   domain.list(access_token, function(err, response, body) {
     var result = request_handle(err, response, body);

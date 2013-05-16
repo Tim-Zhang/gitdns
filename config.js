@@ -10,7 +10,7 @@ var env = process.env.NODE_ENV || 'development';
 /* github */
 github.key = 'b688d87e04c1c54c4bd8';
 github.secret = 'cc0be9f905ebf1ff20acd8db3048d7ce3eb3301b';
-github.collaborator = 'zewenzhang';
+github.collaborator = 'dnsgit';
 
 github.uri.authorize = 'https://github.com/login/oauth/authorize';
 github.uri.redirect = 'http://localhost:3000/github_callback';
