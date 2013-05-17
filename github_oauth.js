@@ -34,7 +34,6 @@ exports.getUser = function(req, res) {
   var access_token = session.github.access_token;
 
   request_github(access_token, URI.user, 'GET', {}, function(error, response, body){
-    console.log(body);
     //body = JSON.parse(body);
     if (body && body.login) {
       _.extend(req.session.github, body);
@@ -85,6 +84,5 @@ var request_github = function(access_token, uri, method, params, callback) {
     }
   };
   _.extend(options, {json: params, method: method});
-  console.log(options);
   request(options, callback);
 }

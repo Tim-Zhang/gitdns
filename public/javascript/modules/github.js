@@ -24,9 +24,15 @@ define(['jquery','underscore' , 'backbone', 'handlebars'], function($, _, Backbo
       this.hidePrompt();
       var responseJson = JSON.parse(xhr.responseText);
       var errors = responseJson.errors;
-      var msg = responseJson.message;
-      if (errors && errors[0]) {
-        msg += ' : ' + errors[0].message;
+      if (errors) {
+        var msg = responseJson.message;
+        if (errors && errors[0]) {
+          msg += ' : ' + errors[0].message;
+        }
+      } else if (responseJson.status){
+        msg = responseJson.status.message;
+      } else {
+        msg = 'Unkown Error';
       }
       this.$('.alert-error .message').html(msg);
       this.$('.alert-error').show();

@@ -44,7 +44,6 @@ exports.new = function(req, res) {
     },
     // save git-rep url
     function(info, callback) {
-      console.log(REPINFO);
       var user = {
         id: session.user.id,
         gitrep: REPINFO.html_url
@@ -60,15 +59,23 @@ exports.new = function(req, res) {
     },
     // push file
     function (info, callback) {
+      var remote = REPINFO.ssh_url;
+      remote = remote.replace('github.com', URI.push);
+      var dirname = file.path(FILENAME);
+      var readme = file.base_dir + 'README.md';
+
+      var cmd_opt = [
+        'cp -a ' + readme + ' ' + dirname
+      ];
       var cmd = [
-        'cd ' + file.path(FILENAME),
+        'cd ' + dirname,
         'git init',
         'git add -A',
         'git cm "create by dnsgit"',
-        'git remote add origin '+ REPINFO.ssh_url,
+        'git remote add origin '+ remote,
         'git push origin master'
       ];
-      var command = cmd.join('&&');
+      var command = cmd_opt.join(';') + ';' + cmd.join('&&');
       exec(command, callback);
     },
     // drop file

@@ -1,9 +1,10 @@
 require.config({
   baseUrl: 'javascript',
   paths: {
-    'jquery': 'jquery-1.9.1.min',
-    'underscore': 'underscore-min',
-    'backbone': 'backbone-min',
+    'jquery': 'lib/jquery-1.9.1.min',
+    'underscore': 'lib/underscore-min',
+    'backbone': 'lib/backbone-min',
+    'handlebars': 'lib/handlebars',
     'showloading': 'plugin/jquery.showLoading.min'
   },
   shim: {

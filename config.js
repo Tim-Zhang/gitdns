@@ -21,7 +21,7 @@ github.uri.rep = 'https://api.github.com/user/repos';
 github.uri.hook = 'https://api.github.com/repos/{{owner}}/{{repo}}/hooks';
 github.uri.key = 'https://api.github.com/repos/{{owner}}/{{repo}}/keys';
 github.uri.collaborator = 'https://api.github.com/repos/{{owner}}/{{repo}}/collaborators/{{user}}';
-
+github.uri.push = 'github.dnsgit.com';
 
 /* dnspod */
 // development only
