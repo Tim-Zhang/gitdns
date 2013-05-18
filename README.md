@@ -73,7 +73,7 @@ MX(@, mxdomain.qq.com., 默认, 600, 10)
 #Upcoming
 
 - Notification with WeChat and SMS
-- event log on website
+- Event log on website
 
 #Powered by 
 - [Node.js](http://nodejs.org/)
