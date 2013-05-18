@@ -33,13 +33,13 @@ exports.new = function(req, res) {
   async.waterfall([
     // create rep
     function(callback){
-      console.info('----- create gitrep  [' + REPINFO.name + '] -----');
+      console.info('----- create gitrep -----');
       github_oauth.createRep(access_token, req.body, callback);
     },
     // create collaborator
     function(rep_info, callback){
-      console.info('----- save create collaborator  [' + REPINFO.name + '] -----');
       REPINFO = rep_info;
+      console.info('----- save create collaborator  [' + REPINFO.name + '] -----');
       var uri_values = {owner: REPINFO.owner.login, repo: REPINFO.name, user: GITHUB.collaborator};
       var uri = S(URI.collaborator).template(uri_values).s;
       var params = {};
@@ -68,10 +68,11 @@ exports.new = function(req, res) {
       var remote = REPINFO.ssh_url;
       remote = remote.replace('github.com', URI.push);
       var dirname = file.path(FILENAME);
-      var readme = path.resolve(__dirname, github.readme);
+      var readme = path.resolve(__dirname, '..' , GITHUB.readme);
+      var obj_readme = path.resolve(dirname, 'README.md');
 
       var cmd_opt = [
-        'cp -a ' + readme + ' ' + dirname
+        'cp -a ' + readme + ' ' + obj_readme
       ];
       var cmd = [
         'cd ' + dirname,
