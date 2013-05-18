@@ -8,12 +8,21 @@ dnspod.uri = {};
 var env = process.env.NODE_ENV || 'development';
 
 /* github */
+
+// development only
+if (env == 'development') {
+  github.uri.redirect = 'http://localhost:3000/github_callback';
+}
+// production only
+if (env == 'production') {
+  github.uri.redirect = 'http://dnsgit.com/github_callback';
+}
+
 github.key = 'b688d87e04c1c54c4bd8';
 github.secret = 'cc0be9f905ebf1ff20acd8db3048d7ce3eb3301b';
 github.collaborator = 'dnsgit';
 
 github.uri.authorize = 'https://github.com/login/oauth/authorize';
-github.uri.redirect = 'http://localhost:3000/github_callback';
 github.uri.login = github.uri.authorize + '?client_id=' + github.key + '&scope=public_repo,repo&redirect_uri=' + github.uri.redirect;
 github.uri.accesstoken = 'https://github.com/login/oauth/access_token';
 github.uri.user= 'https://api.github.com/user';
@@ -33,6 +42,7 @@ if (env == 'development') {
 if (env == 'production') {
   dnspod.key = '10027',
   dnspod.secret = '0f3ccb8ff13c3858c78fabd77463dd0f';
+  github.uri.redirect = 'http://dnsgit.com/github_callback';
 }
 
 dnspod.uri.root = 'https://www.dnspod.cn';

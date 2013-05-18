@@ -32,10 +32,12 @@ exports.new = function(req, res) {
   async.waterfall([
     // create rep
     function(callback){
+      console.info('----- create gitrep  [' + REPINFO.name + '] -----');
       github_oauth.createRep(access_token, req.body, callback);
     },
     // create collaborator
     function(rep_info, callback){
+      console.info('----- save create collaborator  [' + REPINFO.name + '] -----');
       REPINFO = rep_info;
       var uri_values = {owner: REPINFO.owner.login, repo: REPINFO.name, user: GITHUB.collaborator};
       var uri = S(URI.collaborator).template(uri_values).s;
@@ -44,6 +46,7 @@ exports.new = function(req, res) {
     },
     // save git-rep url
     function(info, callback) {
+      console.info('----- save git-rep url  [' + REPINFO.name + '] -----');
       var user = {
         id: session.user.id,
         gitrep: REPINFO.html_url
@@ -54,11 +57,13 @@ exports.new = function(req, res) {
     },
     // create file
     function (callback) {
+      console.info('----- create file  [' + REPINFO.name + '] -----');
       FILENAME = REPINFO.name + '-' + session.user.id;
       file.create_files(dnspod_access_token, FILENAME, callback);
     },
     // push file
     function (info, callback) {
+      console.info('----- push file  [' + REPINFO.name + '] -----');
       var remote = REPINFO.ssh_url;
       remote = remote.replace('github.com', URI.push);
       var dirname = file.path(FILENAME);
@@ -80,11 +85,12 @@ exports.new = function(req, res) {
     },
     // drop file
     function (stdout, stderr, callback) {
-      console.log('drop file');
+      console.info('----- drop file  [' + REPINFO.name + '] -----');
       callback(null, 'drop file done');
     },
     // create hook
     function(info, callback){
+      console.info('----- create hook  [' + REPINFO.name + '] -----');
       var uri_values = {owner: REPINFO.owner.login, repo: REPINFO.name};
       var uri = S(URI.hook).template(uri_values).s;
       var params = {
