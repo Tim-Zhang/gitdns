@@ -21,6 +21,7 @@ if (env == 'production') {
 github.key = 'b688d87e04c1c54c4bd8';
 github.secret = 'cc0be9f905ebf1ff20acd8db3048d7ce3eb3301b';
 github.collaborator = 'dnsgit';
+github.readme = 'README-FOR-REP.md';
 
 github.uri.authorize = 'https://github.com/login/oauth/authorize';
 github.uri.login = github.uri.authorize + '?client_id=' + github.key + '&scope=public_repo,repo&redirect_uri=' + github.uri.redirect;

@@ -7,6 +7,7 @@ var moment = require('moment');
 var async = require('async');
 var S = require('string');
 var exec = require('child_process').exec;
+var path = require('path');
 
 var config = require('../config');
 var db = require('../db');
@@ -67,7 +68,7 @@ exports.new = function(req, res) {
       var remote = REPINFO.ssh_url;
       remote = remote.replace('github.com', URI.push);
       var dirname = file.path(FILENAME);
-      var readme = file.base_dir + 'README.md';
+      var readme = path.resolve(__dirname, github.readme);
 
       var cmd_opt = [
         'cp -a ' + readme + ' ' + dirname
