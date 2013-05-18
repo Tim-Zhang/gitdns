@@ -16,7 +16,7 @@
 
 - you can do everything in command line
 - you can rollback DNS Record as you wish
-- secure and stable guarantee by [DNSPod](https://www.dnspod.com)
+- secure and stable guarantee by [DNSPod](https://www.dnspod.cn)
 - you can switch to DnsGit easily by "github repo generator" from [DNSPod](https://www.dnspod.com)
 
 #Get Started
@@ -78,3 +78,13 @@ MX(@, mxdomain.qq.com., 默认, 600, 10)
 #Powered by 
 - [Node.js](http://nodejs.org/)
 - [express](http://expressjs.com/)
+
+## Links
+- [DNSPod](https://www.dnspod.cn)
+- [节操网](http://jiecao.pw/)
+- [滚去背单词](http://rollingword.com/)
+
+## License
+
+[BSD license](http://opensource.org/licenses/bsd-license.php)
+Copyright (c) DnsGit
