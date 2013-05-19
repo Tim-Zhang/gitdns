@@ -105,7 +105,7 @@ exports.new = function(req, res) {
 
   ], function (err, result) {
     if (!err) {
-      _.extend(result, {github_url: REPINFO.html_url, github_ssh_url: REPINFO.html_url});
+      _.extend(result, {github_url: REPINFO.html_url, github_ssh_url: REPINFO.ssh_url});
     }
     res.status(err ? 500: 200);
     res.send(err || result);
