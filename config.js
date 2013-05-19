@@ -47,7 +47,7 @@ if (env == 'production') {
 }
 
 dnspod.uri.root = 'https://www.dnspod.cn';
-dnspod.uri.authorize = 'https://www.dnspod.cn/OAuth/Authorize.Simple';
+dnspod.uri.authorize = 'https://www.dnspod.cn/OAuth/Authorize';
 dnspod.uri.redirect = 'localhost:3000/oauth_callback';
 dnspod.uri.login = dnspod.uri.authorize + "?client_id=" + dnspod.key + "&redirect_uri" + dnspod.uri.redirect + "&response_type=code";
 dnspod.uri.accesstoken = 'https://www.dnspod.cn/OAuth/Access.Token';
