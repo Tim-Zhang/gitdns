@@ -40,7 +40,9 @@ define(['jquery','underscore' , 'backbone', 'handlebars'], function($, _, Backbo
     showSuc: function(model, xhr, options) {
       this.hidePrompt();
       var rep_href = xhr.github_url;
+      var rep_ssh_href = xhr.github_ssh_url;
       this.$('.alert-success .github-link').attr('href', rep_href).html(rep_href);
+      this.$('.alert-success .github-ssh-link').html(rep_ssh_href);
       this.$('.alert-success').show();
     },
     hidePrompt: function() {
