@@ -107,6 +107,8 @@ exports.new = function(req, res) {
     if (!err) {
       _.extend(result, {github_url: REPINFO.html_url, github_ssh_url: REPINFO.ssh_url});
     }
+    // keep backbone post
+    delete(result.id);
     res.status(err ? 500: 200);
     res.send(err || result);
   });
