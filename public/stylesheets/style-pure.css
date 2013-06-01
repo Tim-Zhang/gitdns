@@ -1,0 +1,6 @@
+html {
+  overflow-y: scroll;
+}
+.header .pure-menu {
+  padding: 0.5em;
+}
