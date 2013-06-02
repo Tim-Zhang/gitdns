@@ -24,6 +24,6 @@ require.config({
       }
   },
   //urlArgs: "bust=" +  (new Date()).getTime()
-  urlArgs: "bust=v2"
+  urlArgs: "bust=v3"
   
 });
