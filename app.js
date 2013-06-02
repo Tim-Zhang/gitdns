@@ -16,9 +16,6 @@ var express = require('express')
   , expressValidator = require('express-validator')
   , oauth = require('./oauth');
 
-// tmp 
-var newskin = require('./routes/newskin'); 
-
 var app = express();
 
 // set Expire Header
@@ -54,7 +51,6 @@ app.configure('development', function(){
 });
 
 app.get('/', routes.index);
-app.get('/newskin', newskin.index);
 app.get('/logout', function(req, res) {
   req.session.user = null;
   console.log(req.session);

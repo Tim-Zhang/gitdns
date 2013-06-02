@@ -11,15 +11,17 @@ var env = process.env.NODE_ENV || 'development';
 
 // development only
 if (env == 'development') {
+  github.key = '98a3dda70cff4fa27050';
+  github.secret = '90a60171c2b398d109576e5068eded080d7edc86';
   github.uri.redirect = 'http://localhost:3000/github_callback';
 }
 // production only
 if (env == 'production') {
+  github.key = 'b688d87e04c1c54c4bd8';
+  github.secret = 'cc0be9f905ebf1ff20acd8db3048d7ce3eb3301b';
   github.uri.redirect = 'http://dnsgit.com/github_callback';
 }
 
-github.key = 'b688d87e04c1c54c4bd8';
-github.secret = 'cc0be9f905ebf1ff20acd8db3048d7ce3eb3301b';
 github.collaborator = 'dnsgit';
 github.readme = 'README-FOR-REP.md';
 

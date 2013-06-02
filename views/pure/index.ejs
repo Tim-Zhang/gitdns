@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/bootstrap/css/bootstrap-partial.css' />
+    <link rel='stylesheet' href='/stylesheets/pure-min.css' />
+    <link rel='stylesheet' href='/stylesheets/style-pure.css' />
+  </head>
+  <body class="index">
+
+    <%include module/navbar%>
+
+
+    <div class="container">
+
+    <div class="row content">
+    </div>
+
+    <div class="footer pure-u-1">
+        © DNSGIT 2013
+    </div>
+
+    <script type="text/template" id="first-step">
+      <strong><span class="badge">1</span></strong> 
+      <span>Set Git repository : </span>
+      {{#unless edit}}
+        {{#if gitrep}}
+          <div class="span6" id="git-rep" style="float:none;display:inline-block;line-height:100%;">{{gitrep}}</div>
+          <button class="btn edit btn-primary" type="button">Edit</button>
+        {{else}}
+          <input class="span6" id="git-rep" type="text" value="{{gitrep}}">
+          <button class="btn update" type="button">Update</button>
+        {{/if}}
+      {{/unless}}
+      {{#if edit}}
+        <input class="span6" id="git-rep" type="text" value="{{gitrep}}">
+        <button class="btn update btn-success" type="button">Update</button>
+        <button class="btn cancel btn-info" type="button">Cancel</button>
+      {{/if}}
+      
+    </script>
+
+    <script type="text/template" id="second-step">
+      <strong><span class="badge">2</span></strong> 
+      Add Post-Receive Hooks : <strong>http://api.dnsgit.com/notify/{{user_id}}</strong>
+    </script>
+
+    <script type="text/template" id="banner-nologin">
+      <div class="splash pure-u-1">
+          <div class="pure-g-r">
+
+              <div class="pure-u-1-3">
+                  <div class="l-box splash-image">
+                    <pre>
+                      <code>
+      ____  _   _______ ________________
+     / __ \/ | / / ___// ____/  _/_  __/
+    / / / /  |/ /\__ \/ / __ / /  / /   
+   / /_/ / /|  /___/ / /_/ // /  / /    
+  /_____/_/ |_//____/\____/___/ /_/ 
+                      </code>
+                    </pre>
+                  </div>
+              </div>
+              <div class="pure-u-2-3" style="margin:0 auto">
+                  <div class="l-box splash-text">
+                      <h1 class="splash-head">
+                        DNSGIT 
+                      </h1>
+                      <h2 class="splash-subhead">
+                        Welcome to DNSGIT.
+                      </h2>
+
+                      <p>
+                          <a href="<%= dnspod_login_url %>" class="pure-button primary-button">Login With DNSPod</a>
+                      </p>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </script>
+
+    <script type="text/template" id="feature">
+      <div class="content pure-u-1">
+        <div class="pure-g-r content-ribbon">
+            <div class="pure-u-2-3">
+                <div class="l-box">
+                    <h4 class="content-subhead">Managed DNS service</h4>
+                    <p>
+                        Geographic distributed name servers managed by us. You are pushing your configuration files with git and we are doing the rest.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="pure-g-r content-ribbon">
+            <div class="pure-u-2-3">
+                <div class="l-box">
+                    <h4 class="content-subhead">Git management</h4>
+                    <p>
+                        Easy DNS management and deployment with git. To create a new domain, add the configuration file to git repository, to delete a domain, remove file from git repository.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="pure-g-r content-ribbon">
+            <div class="pure-u-2-3">
+                <div class="l-box">
+                    <h4 class="content-subhead">Version control</h4>
+                    <p>
+                        Track changes, view history, rollback, continuous backups with git. Safe delegation of DNS administration tasks to users from your organization.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+      </div>
+    </script>
+
+    <script type="text/template" id="domain-list">
+      <table class="table table-hover">
+        <tbody>
+        </tbody>
+      </table>
+    </script>
+
+    <script type="text/template" id="domain-entry">
+      <td>{{name}}</td>
+    </script>
+
+    <script type="text/template" id="record-entry">
+      <td>{{name}}</td>
+      <td>{{type}}</td>
+      <td>{{line}}</td>
+      <td>{{value}}</td>
+      <td>{{mx}}</td>
+      <td>{{ttl}}</td>
+    </script>
+
+    <script type="text/template" id="record-list">
+      <table class="table table-condensed table-hover">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Line</th>
+            <th>Value</th>
+            <th>MX</th>
+            <th>TTL</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </script>
+
+    <script type="text/template" id="alert-error">
+      <div class="alert alert-error">
+        {{#if close}}
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        {{/if}}
+        {{#if msg_important}}<strong>{{msg_important}}</strong> {{/if}}
+        {{msg}} 
+      </div>
+    
+    </script>
+
+    <script type="text/template" id="loading">
+      <img src="/images/loading.gif"/> 
+    </script>
+
+    <script type="text/javascript">
+        var DnsGit = {
+          <% if (user) { %>
+            user_id: <%= user.id %>,
+            gitrep: <% if (user.gitrep) { %>'<%= user.gitrep %>'<% } else { %> '' <% } %>
+          <% } %>
+        };
+      
+    </script>
+    <script type="text/javascript" data-main="/javascript/index" src="/javascript/require.js"></script>
+    <% include module/ta %>
+    <% include module/uservoice %>
+  </body>
+</html>

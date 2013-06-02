@@ -25,10 +25,10 @@ exports.index = function(req, res){
       _.extend(options, {
         user: user
       });
-      res.render('newskin', options);
+      res.render('pure/index', options);
     }); 
   } else {
-    res.render('newskin', options);
+    res.render('pure/index', options);
   }
 };
 

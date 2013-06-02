@@ -129,7 +129,7 @@ var get = function(req, res) {
     navigation: 'github',
   };
   _.extend(options.github, {rep_name: 'dnsgit-' + moment().format('YYYYMMDDHHmmss')});
-  res.render('github', options);
+  res.render('pure/github', options);
 };
 
 var post = function(req, res) {
