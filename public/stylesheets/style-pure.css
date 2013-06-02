@@ -210,6 +210,9 @@ h3 {
 .footer {
   background: none;
 }
+.splash .pure-u-2-3 {
+  width: auto;
+}
 /*{"c":"2013-05-31T14:28:03Z","s":"prod-origin-de1838ad","v":"864568"}*/
 /*
  * The Typekit service used to deliver this font or fonts for use on websites
