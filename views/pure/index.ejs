@@ -9,7 +9,7 @@
       <script type="text/javascript">
         location.replace('/ie');  
       </script>
-    ![endif]-->
+    <![endif]-->
   </head>
   <body class="index">
 
@@ -30,7 +30,7 @@
       <span>Set Git repository : </span>
       {{#unless edit}}
         {{#if gitrep}}
-          <div class="span6" id="git-rep" style="float:none;display:inline-block;line-height:100%;">{{gitrep}}</div>
+          <div class="span6" id="git-rep" style="float:none;display:inline;line-height:100%;">{{gitrep}}</div>
           <button class="btn edit btn-primary" type="button">Edit</button>
         {{else}}
           <input class="span6" id="git-rep" type="text" value="{{gitrep}}">
