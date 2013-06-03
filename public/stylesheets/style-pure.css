@@ -131,7 +131,6 @@ html {
 }
 .header .pure-menu li a:hover {
   background: none;
-  border: none;
   color: #aaa;
 }
 body .primary-button {
@@ -212,6 +211,16 @@ h3 {
 }
 .splash .pure-u-2-3 {
   width: auto;
+}
+.pure-menu ul.profile {
+  position: absolute;
+  top: 8px;
+  right: 15px;
+  left: auto;
+}
+pre code {
+  *color: #333333;
+  *white-space: pre;
 }
 /*{"c":"2013-05-31T14:28:03Z","s":"prod-origin-de1838ad","v":"864568"}*/
 /*

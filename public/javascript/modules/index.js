@@ -224,10 +224,10 @@ define(['jquery','underscore' , 'backbone', 'handlebars', '../helper'], function
       this.route(/^(.+[\.。][^\/]+)$/, "record", this.records);
     },
     routes: {
-      '': 'default',
+      '': 'defaults',
       ':domain_name': ''
     },
-    default: function() {
+    defaults: function() {
       if (DnsGit.user_id) {
         this.login_index();
       } else {
