@@ -51,6 +51,9 @@ app.configure('development', function(){
 });
 
 app.get('/', routes.index);
+app.get('/ie', function(req, res) {
+  res.render('ie');
+});
 app.get('/logout', function(req, res) {
   req.session.user = null;
   console.log(req.session);

@@ -5,7 +5,9 @@ require.config({
     'underscore': 'lib/underscore-min',
     'backbone': 'lib/backbone-min',
     'handlebars': 'lib/handlebars',
-    'showloading': 'plugin/jquery.showLoading.min'
+    'migrate': 'lib/jquery-migrate-1.2.1.min',
+    'showloading': 'plugin/jquery.showLoading.min',
+    'ieblue': 'plugin/jquery.ie6bluescreen.min'
   },
   shim: {
     'backbone': {
