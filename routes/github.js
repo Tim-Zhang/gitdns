@@ -120,8 +120,8 @@ var get = function(req, res) {
   var user = session.user;
   if (!user) {res.redirect('/');return;}
   var options = {
-    title: 'DnsGit',
-    brand: 'DnsGit',
+    title: 'DNSGIT',
+    brand: 'DNSGIT',
     github_login_url: config.github.uri.login,
     dnspod_login_url: config.dnspod.uri.login,
     user: user,

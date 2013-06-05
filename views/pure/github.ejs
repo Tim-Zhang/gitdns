@@ -51,7 +51,7 @@
               <dl class="form">
                 <dt><label for="repository_description">Description</label> <span class="note">(optional)</span></dt>
                 <dd>
-                <div class="fieldWithErrors"><input class="long" id="repository_description" name="customer[custom_fields][github_repository_description]" size="30" tabindex="4" type="text" value="GitHub Rrepository for DnsGit"></div>
+                <div class="fieldWithErrors"><input class="long" id="repository_description" name="customer[custom_fields][github_repository_description]" size="30" tabindex="4" type="text" value="GitHub Rrepository for <%= brand %>"></div>
                 </dd>
               </dl>
             </div>
@@ -63,7 +63,7 @@
               <strong class="message"></strong>
             </div>
             <div class="alert alert-success" style="display:none">
-              <strong>Well done!</strong> You successfully create a github repository for dnsgit.<br/>
+              <strong>Well done!</strong> You successfully create a github repository for <%= brand %>.<br/>
               Check it now -> <strong> <a target="_blank" class="github-link"></a></strong><br/>
               Git Clone -> <strong> <b class="github-ssh-link"></b></strong><br/>
             </div>
@@ -74,7 +74,7 @@
         </div>
       </div><!--end container -->
       <div class="footer pure-u-1">
-          © DNSGIT 2013
+          © <%= brand %> 2013
       </div>
 
       <script type="text/javascript" data-main="/javascript/github" src="/javascript/require.js"></script>
