@@ -9,8 +9,8 @@ var _ = require('underscore');
 exports.index = function(req, res){
   var user = req.session.user;
   var options = {
-    title: 'DnsGit',
-    brand: 'DnsGit',
+    title: 'DNSGIT',
+    brand: 'DNSGIT',
     dnspod_login_url: config.dnspod.uri.login,
     github_login_url: config.github.uri.login,
     user: null,
