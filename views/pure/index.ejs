@@ -1,15 +1,12 @@
 <!DOCTYPE html>
+<% include module/ascii %>
 <html>
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/bootstrap/css/bootstrap-partial.css' />
     <link rel='stylesheet' href='/stylesheets/pure-min.css' />
     <link rel='stylesheet' href='/stylesheets/style-pure.css?v=2' />
-    <!--[if lte IE 6]>
-      <script type="text/javascript">
-        location.replace('/ie');  
-      </script>
-    ![endif]-->
+    <% include module/noie6 %>
   </head>
   <body class="index">
 
@@ -30,7 +27,7 @@
       <span>Set Git repository : </span>
       {{#unless edit}}
         {{#if gitrep}}
-          <div class="span6" id="git-rep" style="float:none;display:inline-block;line-height:100%;">{{gitrep}}</div>
+          <div class="span6" id="git-rep" style="float:none;display:inline;line-height:100%;">{{gitrep}}</div>
           <button class="btn edit btn-primary" type="button">Edit</button>
         {{else}}
           <input class="span6" id="git-rep" type="text" value="{{gitrep}}">
@@ -186,5 +183,6 @@
     </script>
     <script type="text/javascript" data-main="/javascript/index" src="/javascript/require.js"></script>
     <% include module/ta %>
+    <% include module/uservoice %>
   </body>
 </html>
