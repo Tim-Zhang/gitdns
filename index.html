@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Dnsgit : Manage DNS By Git" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Dnsgit</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/zewenzhang/dnsgit">View on GitHub</a>
+
+          <h1 id="project_title">Dnsgit</h1>
+          <h2 id="project_tagline">Manage DNS By Git</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/zewenzhang/dnsgit/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/zewenzhang/dnsgit/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <pre><code>    ____     _   __   _____    ______   ____   ______
+   / __ \   / | / /  / ___/   / ____/  /  _/  /_  __/
+  / / / /  /  |/ /   \__ \   / / __    / /     / /   
+ / /_/ /  / /|  /   ___/ /  / /_/ /  _/ /     / /    
+/_____/  /_/ |_/   /____/   \____/  /___/    /_/     
+
+</code></pre>
+
+<h1>
+<a name="what-is-dnsgit" class="anchor" href="#what-is-dnsgit"><span class="octicon octicon-link"></span></a>What is DnsGit</h1>
+
+<p><a href="https://dnsgit.com">DnsGit</a> is an awesome DNS manange service.</p>
+
+<pre><code>Git(Manage) ➩ DnsGit(middle ware)  ➩ DNSPod(resolve)
+</code></pre>
+
+<h1>
+<a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h1>
+
+<ul>
+<li>you can do everything in command line</li>
+<li>you can rollback DNS Record as you wish</li>
+<li>secure and stable guarantee by <a href="https://www.dnspod.cn">DNSPod</a>
+</li>
+<li>you can switch to DnsGit easily by "github repo generator" from <a href="https://www.dnspod.com">DNSPod</a>
+</li>
+</ul><h1>
+<a name="get-started" class="anchor" href="#get-started"><span class="octicon octicon-link"></span></a>Get Started</h1>
+
+<ol>
+<li>Sign Up a DNSPod account and modify your domain ns record to DNSPod at registrar.</li>
+<li>GitHub configure (you can use "github repo generator" to replace this step)
+
+<ul>
+<li>Login DnsGit with DNSPod account.</li>
+<li>Create a GitHub repo.</li>
+<li>Set Git repository on DnsGit.</li>
+<li>Add WebHook (url is displayed on DnsGit index when you login) on GitHub.</li>
+</ul>
+</li>
+<li>Create Domain-File and Record-Line.</li>
+<li>
+<code>git push</code> to apply your configuration.</li>
+</ol><hr><p><strong>Yum !</strong></p>
+
+<p><strong>Bravo !!</strong></p>
+
+<p><strong>Excellent !!!</strong></p>
+
+<p><strong>WOO HOO HOO !</strong></p>
+
+<h1>
+<a name="concept--syntax" class="anchor" href="#concept--syntax"><span class="octicon octicon-link"></span></a>Concept &amp; Syntax</h1>
+
+<h2>
+<a name="domain-file" class="anchor" href="#domain-file"><span class="octicon octicon-link"></span></a>Domain-File</h2>
+
+<p>file named by domain name.</p>
+
+<h2>
+<a name="record-line" class="anchor" href="#record-line"><span class="octicon octicon-link"></span></a>Record-Line</h2>
+
+<p>one record mapping one line in domain file.</p>
+
+<p>Syntax:</p>
+
+<pre><code>-- @type[required]  = record type(A, CNAME, MX, NS ...)
+-- @name[required]  = relative name
+-- @value[required] = record value(ipadress, domain ...)
+-- @ttl[optional]   = TTL (default: user default TTL)
+-- @mx[optional]    = MX Priority (default: 5)
+
+type(name, value, ttl, mx)
+
+</code></pre>
+
+<p>Example:</p>
+
+<pre><code>A(@, 1.1.1.1, 默认, 600)
+CNAME(dnsgit, dnsgit.com, 默认, 600)
+MX(@, mxdomain.qq.com., 默认, 600, 10)
+
+</code></pre>
+
+<h1>
+<a name="upcoming" class="anchor" href="#upcoming"><span class="octicon octicon-link"></span></a>Upcoming</h1>
+
+<ul>
+<li>Notification with WeChat and SMS</li>
+<li>Event log on website</li>
+</ul><h1>
+<a name="powered-by" class="anchor" href="#powered-by"><span class="octicon octicon-link"></span></a>Powered by</h1>
+
+<ul>
+<li><a href="http://nodejs.org/">Node.js</a></li>
+<li><a href="http://expressjs.com/">express</a></li>
+</ul><h2>
+<a name="links" class="anchor" href="#links"><span class="octicon octicon-link"></span></a>Links</h2>
+
+<ul>
+<li><a href="https://www.dnspod.cn">DNSPod</a></li>
+<li><a href="http://jiecao.pw/">节操网</a></li>
+<li><a href="http://rollingword.com/">滚去背单词</a></li>
+</ul><h2>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p><a href="http://opensource.org/licenses/bsd-license.php">BSD license</a>
+Copyright (c) DnsGit</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Dnsgit maintained by <a href="https://github.com/zewenzhang">zewenzhang</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
