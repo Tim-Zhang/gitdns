@@ -40,7 +40,7 @@ github.uri.push = 'github.dnsgit.com';
 if (env == 'development') {
   dnspod.key = '10021',
   dnspod.secret = '1bd198ae75f8e57b296c59532d55a9b9';
-  dnspod.uri.redirect = 'localhost:3000/oauth_callback';
+  dnspod.uri.redirect = 'http://localhost:3000/oauth_callback';
 }
 // production only
 if (env == 'production') {
