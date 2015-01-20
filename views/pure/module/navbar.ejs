@@ -1,11 +1,11 @@
  <div class="header pure-u-1">
         <div class="pure-menu pure-menu-open pure-menu-fixed pure-menu-horizontal">
-            <a class="pure-menu-heading" href="/">DnsGit</a>
+            <a class="pure-menu-heading" href="/">GitDNS</a>
 
             <ul>
                 <li <%if (navigation === '') {%>class="pure-menu-selected"<%}%>><a href="/">Home</a></li>
-                <li><a href="https://github.com/zewenzhang/dnsgit/blob/master/README.md" target="_blank">Docs</a></li>
-                <li><a href="https://github.com/zewenzhang/dnsgit-demo" target="_blank">GitHub Demo</a></li>
+                <li><a href="https://github.com/Tim-Zhang/gitdns/blob/master/README.md" target="_blank">Docs</a></li>
+                <li><a href="https://github.com/Tim-Zhang/gitdns-demo" target="_blank">GitHub Demo</a></li>
                 <% if (user) { %>
                 <li <%if (navigation === 'github') {%>class="pure-menu-selected"<%}%> ><a href="<%= github_login_url %>">Create GitHub Repo</a></li>
               <% } %>

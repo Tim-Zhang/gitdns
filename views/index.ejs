@@ -20,7 +20,7 @@
     </footer>
 
   <script type="text/template" id="first-step">
-    <strong><span class="badge">1.</span></strong> 
+    <strong><span class="badge">1.</span></strong>
     <span>Set Git repository : </span>
     {{#unless edit}}
       {{#if gitrep}}
@@ -36,12 +36,12 @@
       <button class="btn update btn-success" type="button">Update</button>
       <button class="btn cancel btn-info" type="button">Cancel</button>
     {{/if}}
-    
+
   </script>
 
   <script type="text/template" id="second-step">
-    <strong><span class="badge">2.</span></strong> 
-    Add Post-Receive Hooks : <strong>http://api.dnsgit.com/notify/{{user_id}}</strong>
+    <strong><span class="badge">2.</span></strong>
+    Add Post-Receive Hooks : <strong>http://api.gitdns.cc/notify/{{user_id}}</strong>
   </script>
 
   <script type="text/template" id="banner-nologin">
@@ -116,23 +116,23 @@
       <button type="button" class="close" data-dismiss="alert">×</button>
       {{/if}}
       {{#if msg_important}}<strong>{{msg_important}}</strong> {{/if}}
-      {{msg}} 
+      {{msg}}
     </div>
-  
+
   </script>
 
   <script type="text/template" id="loading">
-    <img src="/images/loading.gif"/> 
+    <img src="/images/loading.gif"/>
   </script>
 
   <script type="text/javascript">
-      var DnsGit = {
+      var GitDNS = {
         <% if (user) { %>
           user_id: <%= user.id %>,
           gitrep: <% if (user.gitrep) { %>'<%= user.gitrep %>'<% } else { %> '' <% } %>
         <% } %>
       };
-    
+
   </script>
   <script type="text/javascript" data-main="/javascript/index" src="/javascript/require.js"></script>
   <% include module/ta %>

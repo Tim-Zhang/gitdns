@@ -1,3 +1,3 @@
 main:
-	test -e /tmp/dnsgit || mkdir /tmp/dnsgit
-	test -e /tmp/dnsgit-tmp || mkdir /tmp/dnsgit-tmp
+	test -e /tmp/gitdns || mkdir /tmp/gitdns
+	test -e /tmp/gitdns-tmp || mkdir /tmp/gitdns-tmp

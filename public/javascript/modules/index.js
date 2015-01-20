@@ -14,8 +14,8 @@ define(['jquery','underscore' , 'backbone', 'handlebars', '../helper'], function
       var options = _.extend({} , render_options, this.model.toJSON());
       this.$el.html(this.template(options));
       return this;
-    }   
-  }); 
+    }
+  });
 
   var step1View = stepView.extend({
     events: {
@@ -23,25 +23,25 @@ define(['jquery','underscore' , 'backbone', 'handlebars', '../helper'], function
       'click .cancel': 'cancel',
       'click .edit': 'edit',
       'click div#git-rep': 'edit'
-    },  
+    },
     cancel: function(e) {
       this.render();
-    },  
+    },
     edit: function(e) {
       e.preventDefault();
       this.render({edit: true});
-    },  
+    },
     update: function(e) {
       e.preventDefault();
       var gitrep = $('#git-rep').val();
       this.model.save({gitrep: gitrep});
-    }   
-  
-  }); 
+    }
+
+  });
 
   var addTitle = function(elem, title) {
-    elem.append('<span class="title">' + title + '</span>');        
-  };  
+    elem.append('<span class="title">' + title + '</span>');
+  };
   setupView = Backbone.View.extend({
     tagName: 'form',
     className: 'form-horizontal bs-docs-example',
@@ -83,17 +83,17 @@ define(['jquery','underscore' , 'backbone', 'handlebars', '../helper'], function
 
   var domainListCollection = Backbone.Collection.extend({
     url: '/dnspod/domainlist',
-    model: Backbone.Model 
+    model: Backbone.Model
   });
 
   var recordListCollection = Backbone.Collection.extend({
     url: '/dnspod/recordlist/',
     model: Backbone.Model,
     initialize: function(options) {
-      this.url += options.domain_id; 
+      this.url += options.domain_id;
     }
   });
-  
+
   var domainView = Backbone.View.extend({
     tagName: 'tr',
     template: Handlebars.compile($('#domain-entry').html()),
@@ -123,7 +123,7 @@ define(['jquery','underscore' , 'backbone', 'handlebars', '../helper'], function
       return this;
     }
   });
-  
+
   var domainListView = Backbone.View.extend({
     className: 'bs-docs-example domainlist',
     template: Handlebars.compile($('#domain-list').html()),
@@ -167,7 +167,7 @@ define(['jquery','underscore' , 'backbone', 'handlebars', '../helper'], function
 
   var recordListView = Backbone.View.extend({
     events: {
-      'click .title': 'toDomainList' 
+      'click .title': 'toDomainList'
     },
     className: 'bs-docs-example recordlist',
     template: Handlebars.compile($('#record-list').html()),
@@ -228,14 +228,14 @@ define(['jquery','underscore' , 'backbone', 'handlebars', '../helper'], function
       ':domain_name': ''
     },
     defaults: function() {
-      if (DnsGit.user_id) {
+      if (GitDNS.user_id) {
         this.login_index();
       } else {
         this.nologin_index();
       }
-    }, 
+    },
     login_index: function() {
-      var user = new userModel(DnsGit);
+      var user = new userModel(GitDNS);
       var setup = new setupView({model: user, title: 'Setup'});
       $('.content').html('');
       $('.content').append(setup.el);
@@ -257,7 +257,7 @@ define(['jquery','underscore' , 'backbone', 'handlebars', '../helper'], function
       if (/。/.test(domain)) {
         Backbone.trigger('navigate', domain_name.replace('。', '.'), true);
         return false;
-      }  
+      }
       var domain = this.domainlist && this.domainlist.findWhere({name: domain_name});
       if(!domain) {
         Backbone.trigger('navigate', '', true);

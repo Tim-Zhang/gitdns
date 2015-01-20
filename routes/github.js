@@ -78,7 +78,7 @@ exports.new = function(req, res) {
         'cd ' + dirname,
         'git init',
         'git add -A',
-        'git cm "create by dnsgit"',
+        'git cm "create by GitDNS"',
         'git remote add origin '+ remote,
         'git push origin master'
       ];
@@ -96,9 +96,9 @@ exports.new = function(req, res) {
       var uri_values = {owner: REPINFO.owner.login, repo: REPINFO.name};
       var uri = S(URI.hook).template(uri_values).s;
       var params = {
-        name: 'web', 
+        name: 'web',
         active: true,
-        config: {url: 'http://api.dnsgit.com/notify/' + session.user.id, content_type: 'json'},
+        config: {url: 'http://api.gitdns.cc/notify/' + session.user.id, content_type: 'json'},
       };
       github_oauth.createHook(access_token,uri, params, callback);
     }
@@ -120,15 +120,15 @@ var get = function(req, res) {
   var user = session.user;
   if (!user) {res.redirect('/');return;}
   var options = {
-    title: 'DNSGIT',
-    brand: 'DNSGIT',
+    title: 'GitDNS',
+    brand: 'GitDNS',
     github_login_url: config.github.uri.login,
     dnspod_login_url: config.dnspod.uri.login,
     user: user,
-    github: session.github, 
+    github: session.github,
     navigation: 'github',
   };
-  _.extend(options.github, {rep_name: 'dnsgit-' + moment().format('YYYYMMDDHHmmss')});
+  _.extend(options.github, {rep_name: 'gitdns-' + moment().format('YYYYMMDDHHmmss')});
   res.render('pure/github', options);
 };
 

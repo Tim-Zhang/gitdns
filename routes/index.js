@@ -9,8 +9,8 @@ var _ = require('underscore');
 exports.index = function(req, res){
   var user = req.session.user;
   var options = {
-    title: 'DNSGIT',
-    brand: 'DNSGIT',
+    title: 'GitDNS',
+    brand: 'GitDNS',
     dnspod_login_url: config.dnspod.uri.login,
     github_login_url: config.github.uri.login,
     user: null,
@@ -26,7 +26,7 @@ exports.index = function(req, res){
         user: user
       });
       res.render('pure/index', options);
-    }); 
+    });
   } else {
     res.render('pure/index', options);
   }

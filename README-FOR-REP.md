@@ -1,15 +1,15 @@
-#A GitHub Repo for DnsGit
+#A GitHub Repo for GitDNS
 
 ```
     ____     _   __   _____    ______   ____   ______
    / __ \   / | / /  / ___/   / ____/  /  _/  /_  __/
-  / / / /  /  |/ /   \__ \   / / __    / /     / /   
- / /_/ /  / /|  /   ___/ /  / /_/ /  _/ /     / /    
-/_____/  /_/ |_/   /____/   \____/  /___/    /_/ 
+  / / / /  /  |/ /   \__ \   / / __    / /     / /
+ / /_/ /  / /|  /   ___/ /  / /_/ /  _/ /     / /
+/_____/  /_/ |_/   /____/   \____/  /___/    /_/
 ```
 
-#What is DnsGit
-[DnsGit](https://dnsgit.com) is an awesome DNS manange service use Git
+#What is GitDNS
+[GitDNS](https://gitdns.cc) is an awesome DNS manange service use Git
 
 
 #Quick Start
@@ -22,7 +22,7 @@ edit your domain file
     git add @change-file
     git commit -m "say something here"
     git push origin master -u
-    
+
 now your DNS records has modified successful!
 
 #Concept & Syntax
@@ -30,7 +30,7 @@ now your DNS records has modified successful!
 ## Domain File
 file named by domain name.
 
-##Record Line 
+##Record Line
 one record mapping one line in domain file.
 
 Syntax:
@@ -48,7 +48,7 @@ type(name, value, ttl, mx)
 Example:
 ```
 A(@, 1.1.1.1, 默认, 600)
-CNAME(dnsgit, dnsgit.com, 默认, 600)
+CNAME(gitdns, gitdns.cc, 默认, 600)
 MX(@, mxdomain.qq.com., 默认, 600, 10)
 
 ```

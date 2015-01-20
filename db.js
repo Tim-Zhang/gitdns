@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var db = mongoose.createConnection('mongodb://localhost/dnsgit');
+var db = mongoose.createConnection('mongodb://localhost/gitdns');
 
 var schema = mongoose.Schema({ id: 'string', gitrep: 'string', access_token: 'string'});
 var User = db.model('User', schema);
@@ -19,10 +19,10 @@ exports.saveUser = function(user, callback) {
       var newUser = new User({id: user.id, gitrep: user.gitrep, access_token: user.access_token});
       newUser.save(callback);
     }
-  }); 
+  });
 };
 exports.getUser = function(id, callback) {
-  User.find({id: id}, callback);  
+  User.find({id: id}, callback);
 };
 
 

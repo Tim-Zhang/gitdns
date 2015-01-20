@@ -1,6 +1,6 @@
 {
-  "name": "dnsgit",
-  "version": "1.0.1",
+  "name": "gitdns",
+  "version": "1.0.2",
   "private": true,
   "scripts": {
     "start": "node app"

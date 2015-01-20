@@ -19,10 +19,10 @@ if (env == 'development') {
 if (env == 'production') {
   github.key = 'b688d87e04c1c54c4bd8';
   github.secret = 'cc0be9f905ebf1ff20acd8db3048d7ce3eb3301b';
-  github.uri.redirect = 'http://dnsgit.com/github_callback';
+  github.uri.redirect = 'http://gitdns.cc/github_callback';
 }
 
-github.collaborator = 'dnsgit';
+github.collaborator = 'gitdns-cc';
 github.readme = 'README-FOR-REP.md';
 
 github.uri.authorize = 'https://github.com/login/oauth/authorize';
@@ -33,7 +33,7 @@ github.uri.rep = 'https://api.github.com/user/repos';
 github.uri.hook = 'https://api.github.com/repos/{{owner}}/{{repo}}/hooks';
 github.uri.key = 'https://api.github.com/repos/{{owner}}/{{repo}}/keys';
 github.uri.collaborator = 'https://api.github.com/repos/{{owner}}/{{repo}}/collaborators/{{user}}';
-github.uri.push = 'github.dnsgit.com';
+github.uri.push = 'github.gitdns.cc';
 
 /* dnspod */
 // development only
@@ -46,7 +46,7 @@ if (env == 'development') {
 if (env == 'production') {
   dnspod.key = '10027',
   dnspod.secret = '0f3ccb8ff13c3858c78fabd77463dd0f';
-  dnspod.uri.redirect = 'http://dnsgit.com/oauth_callback';
+  dnspod.uri.redirect = 'http://gitdns.cc/oauth_callback';
 }
 
 dnspod.uri.root = 'https://www.dnspod.cn';
