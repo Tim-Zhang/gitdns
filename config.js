@@ -55,6 +55,8 @@ dnspod.uri.login = dnspod.uri.authorize + "?client_id=" + dnspod.key + "&redirec
 dnspod.uri.accesstoken = 'https://www.dnspod.cn/OAuth/Access.Token';
 dnspod.uri.user = 'https://dnsapi.cn/User.Detail';
 
+dnspod.userAgent = 'GitDomain/0.2.0'
+
 
 /* exports */
 exports.dnspod = dnspod;

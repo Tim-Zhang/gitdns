@@ -9,20 +9,25 @@ var URI = config.dnspod.uri;
 exports.callback = function(req, res) {
   var code = req.query.code;
   var params = {
-    uri: URI.accesstoken,
+    url: URI.accesstoken,
+    headers: {
+      'User-Agent': config.dnspod.userAgent
+    },
     form: {
       code: code,
       client_id: DNSPOD.key,
       client_secret: DNSPOD.secret,
       grant_type: 'authorization_code'
-    } 
+    }
   };
+
   request.post(params, function(error, response, body){
+    // console.log(error, body);
     body = JSON.parse(body);
-    console.log(body);
     req.session.access_token = body.access_token;
     exports.getUser(req, res);
   });
+
 }
 
 exports.getUser = function(req, res) {
@@ -41,7 +46,7 @@ exports.getUser = function(req, res) {
       var user = body.info.user;
       user.name = user.realname || user.nick || user.id;
       user.access_token = req.session.access_token;
-      req.session.user = user; 
+      req.session.user = user;
       db.saveUser(user, function() {
         console.log('has write to mongo');
         console.log(user);
