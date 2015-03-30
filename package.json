@@ -6,15 +6,16 @@
     "start": "node app"
   },
   "dependencies": {
-    "express": "3.1.0",
+    "async": "*",
     "ejs": "*",
-    "request": "*",
-    "qs": "*",
-    "mongoose": "*",
-    "underscore": "*",
-    "string": "~1.3.1",
-    "moment": "*",
+    "express": "3.1.0",
     "express-validator": "*",
-    "async": "*"
+    "moment": "*",
+    "mongoose": "*",
+    "qs": "*",
+    "request": "*",
+    "string": "~1.3.1",
+    "thunks": "^2.7.2",
+    "underscore": "*"
   }
 }
