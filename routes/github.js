@@ -29,7 +29,7 @@ exports.new = function(req, res) {
   var REPINFO, FILENAME;
   var session = req.session;
   var access_token = session.github.access_token;
-  var dnspod_access_token = session.user.access_token;
+  var dnspod_access_token = session.user.accessToken;
   async.waterfall([
     // create rep
     function(callback){

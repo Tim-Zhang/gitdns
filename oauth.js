@@ -45,7 +45,7 @@ exports.getUser = function(req, res) {
     if (body && body.info && body.info.user) {
       var user = body.info.user;
       user.name = user.realname || user.nick || user.id;
-      user.access_token = req.session.access_token;
+      user.accessToken = req.session.access_token;
       req.session.user = user;
       db.saveUser(user, function() {
         console.log('has write to mongo');

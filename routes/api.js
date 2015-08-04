@@ -4,7 +4,7 @@ var _ = require('underscore');
 
 var need_access_token = function(req, res, options) {
   var session = req.session;
-  if (session && session.user && session.user.access_token) {
+  if (session && session.user && session.user.accessToken) {
     return 0;
   } else {
     return [401, {message: 'not login'}]
@@ -36,11 +36,11 @@ exports.validator = function(method, req, res, options) {
 
 
 exports.domainlist = function(req, res, options) {
-  var access_token = req.session.user.access_token;
+  var access_token = req.session.user.accessToken;
   domain.list(access_token, function(err, response, body) {
     var result = request_handle(err, response, body);
     if (result === false) {
-      res.send(500); 
+      res.send(500);
       return;
     }
     var rest = restful(result, 'domains');
@@ -49,11 +49,11 @@ exports.domainlist = function(req, res, options) {
 };
 
 exports.recordlist = function(req, res, options) {
-  var access_token = req.session.user.access_token;
+  var access_token = req.session.user.accessToken;
   record.list(options.domain_id, access_token, function(err, response, body) {
     var result = request_handle(err, response, body);
     if (result === false) {
-      res.send(500); 
+      res.send(500);
       return;
     }
     var rest = restful(result, 'records');
@@ -67,10 +67,10 @@ exports.recordlist = function(req, res, options) {
 
 var request_handle = function(err, res, body) {
   if (err) {
-    // TODO 
+    // TODO
     // error handle
     return false;
-  } 
+  }
   return JSON.parse(body);
 }
 
@@ -90,6 +90,6 @@ var restful = function(body, key) {
     ret.push(body);
   }
   return ret;
-  
+
 }
 
