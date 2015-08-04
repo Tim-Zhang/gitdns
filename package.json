@@ -3,7 +3,7 @@
   "version": "1.0.2",
   "private": true,
   "scripts": {
-    "start": "node app --harmony"
+    "start": "n use 0.12.2 --harmony app"
   },
   "dependencies": {
     "async": "*",

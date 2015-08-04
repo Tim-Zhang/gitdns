@@ -33,7 +33,7 @@ exports.new = function(req, res) {
   async.waterfall([
     // create rep
     function(callback){
-      console.info('----- create gitrep -----');
+      console.info('----- create repo -----');
       github_oauth.createRep(access_token, req.body, callback);
     },
     // create collaborator
@@ -50,7 +50,7 @@ exports.new = function(req, res) {
       console.info('----- save git-rep url  [' + REPINFO.name + '] -----');
       var user = {
         id: session.user.id,
-        gitrep: REPINFO.html_url
+        repoUrl: REPINFO.html_url
       }
       db.saveUser(user, function(err) {
         callback(err);

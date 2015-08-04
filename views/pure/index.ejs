@@ -26,16 +26,16 @@
       <strong><span class="badge">1</span></strong>
       <span>Set Git repository : </span>
       {{#unless edit}}
-        {{#if gitrep}}
-          <div class="span6" id="git-rep" style="float:none;display:inline;line-height:100%;">{{gitrep}}</div>
+        {{#if repoUrl}}
+          <div class="span6" id="git-rep" style="float:none;display:inline;line-height:100%;">{{repoUrl}}</div>
           <button class="btn edit btn-primary" type="button">Edit</button>
         {{else}}
-          <input class="span6" id="git-rep" type="text" value="{{gitrep}}">
+          <input class="span6" id="git-rep" type="text" value="{{repoUrl}}">
           <button class="btn update" type="button">Update</button>
         {{/if}}
       {{/unless}}
       {{#if edit}}
-        <input class="span6" id="git-rep" type="text" value="{{gitrep}}">
+        <input class="span6" id="git-rep" type="text" value="{{repoUrl}}">
         <button class="btn update btn-success" type="button">Update</button>
         <button class="btn cancel btn-info" type="button">Cancel</button>
       {{/if}}
@@ -176,7 +176,7 @@
         var GitDNS = {
           <% if (user) { %>
             user_id: <%= user.id %>,
-            gitrep: <% if (user.gitrep) { %>'<%= user.gitrep %>'<% } else { %> '' <% } %>
+            repoUrl: <% if (user.repoUrl) { %>'<%= user.repoUrl %>'<% } else { %> '' <% } %>
           <% } %>
         };
 

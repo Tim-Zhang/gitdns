@@ -33,8 +33,8 @@ define(['jquery','underscore' , 'backbone', 'handlebars', '../helper'], function
     },
     update: function(e) {
       e.preventDefault();
-      var gitrep = $('#git-rep').val();
-      this.model.save({gitrep: gitrep});
+      var repoUrl = $('#git-rep').val();
+      this.model.save({repoUrl: repoUrl});
     }
 
   });

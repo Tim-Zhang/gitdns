@@ -65,7 +65,7 @@ app.get('/users', user.list);
 app.post('/rep', function(req, res) {
    var user = {
      id: req.body.user_id,
-     gitrep: req.body.gitrep
+     repoUrl: req.body.repoUrl
    };
    db.saveUser(user, function(err) {
      if (!err) {

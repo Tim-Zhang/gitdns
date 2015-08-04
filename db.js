@@ -28,7 +28,7 @@ exports.getUser = function(id, callback) {
   co(function* () {
     try {
       yield user.fetch();
-      callback(user.toJSON())
+      callback(null, user.toJSON())
     } catch(e) {
       callback(e);
     }
@@ -39,7 +39,7 @@ exports.getUser = function(id, callback) {
 
 // test
 
-//var user = {id: 2, gitrep: 'zhangzewen'};
+//var user = {id: 2, repoUrl: 'zhangzewen'};
 //saveUser(user, function(err) {
 //  console.log(err);
 //  console.log('done');
